@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ya.exception.EntityAuthorizationException;
+import com.ya.exception.EntityNotFoundException;
 import com.ya.model.group.Group;
 import com.ya.model.group.GroupFactory;
 import com.ya.model.user.YaUser;
@@ -92,11 +94,15 @@ public class GroupController extends YaController {
 
 	@RequestMapping(value = "/api/groups/{groupId}", method = RequestMethod.DELETE)
 	public void deleteGroup(String groupId) {
+
 		Group original = getGroupService().findOne(groupId);
-		if (original != null && !original.canUpdate(getUserName())) {
-			// return forbidden();
-			// TODO to be implemented
-		}
+
+		if (original == null)
+			throw new EntityNotFoundException(Group.class.getSimpleName(), groupId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Group.class.getSimpleName(), groupId);
+
 
 		Logger.debug("GroupController.deleteGroup groupId =" + groupId);
 		getGroupService().delete(groupId);
@@ -124,10 +130,12 @@ public class GroupController extends YaController {
 		Logger.debug("GroupController.update()");
 
 		Group original = getGroupService().findOne(groupId);
-		if (original != null && !original.canUpdate(getUserName())) {
-			// return forbidden();
-			// TODO to be implemented
-		}
+
+		if (original == null)
+			throw new EntityNotFoundException(Group.class.getSimpleName(), groupId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Group.class.getSimpleName(), groupId);
 
 		group.setId(groupId);
 		group.username = getUserName();

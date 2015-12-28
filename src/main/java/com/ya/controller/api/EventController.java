@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ya.exception.EntityAuthorizationException;
+import com.ya.exception.EntityNotFoundException;
 import com.ya.model.event.Event;
 import com.ya.model.event.EventComment;
 import com.ya.model.event.EventFactory;
@@ -55,10 +57,11 @@ public class EventController extends YaController {
 
 		Event original = getEventService().findOne(eventId);
 
-		if (original != null && !original.canUpdate(getUserName())) {
-			// return forbidden();
-			// TODO To be implemented
-		}
+		if (original == null)
+			throw new EntityNotFoundException(Event.class.getSimpleName(), eventId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Event.class.getSimpleName(), eventId);
 
 		event.setUsername(getUserName());
 		event.setId(eventId);
@@ -117,10 +120,12 @@ public class EventController extends YaController {
 		Logger.debug("EventAPIController.deleteEvent eventId =" + eventId);
 
 		Event original = getEventService().findOne(eventId);
-		if (original != null && !original.canUpdate(getUserName())) {
-			// return forbidden();
-			// TODO To be implemented
-		}
+
+		if (original == null)
+			throw new EntityNotFoundException(Event.class.getSimpleName(), eventId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Event.class.getSimpleName(), eventId);
 
 		getEventService().delete(eventId);
 	}
@@ -131,16 +136,16 @@ public class EventController extends YaController {
 		Logger.debug("EventAPIController.participate");
 
 		Event event = getEventService().findOne(eventId);
-		if (event != null) {
-			if (event.accept(participation)) {
-				participation.setEventName(event.getName());
-				participation.setEventId(event.getId());
-				participation = getEventService().save(participation);
-			}
-		} else {
-			Logger.error("Cannot participate to an unknown event. Event Id = "
-					+ participation.getEventId());
+
+		if (event == null)
+			throw new EntityNotFoundException(Event.class.getSimpleName(), eventId);
+
+		if (event.accept(participation)) {
+			participation.setEventName(event.getName());
+			participation.setEventId(event.getId());
+			participation = getEventService().save(participation);
 		}
+
 		return participation;
 	}
 
@@ -259,5 +264,7 @@ public class EventController extends YaController {
 
 		return comment;
 	}
+
+
 
 }

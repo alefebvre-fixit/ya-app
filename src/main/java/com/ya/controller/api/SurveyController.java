@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ya.exception.EntityAuthorizationException;
+import com.ya.exception.EntityNotFoundException;
 import com.ya.model.survey.Survey;
 import com.ya.util.Logger;
 
@@ -21,10 +23,11 @@ public class SurveyController extends YaController {
 
 		Survey original = getSurveyService().getSurvey(surveyId);
 
-		if (original != null && !original.canUpdate(getUserName())) {
-			// return forbidden();
-			// TODO To be implemented
-		}
+		if (original == null)
+			throw new EntityNotFoundException(Survey.class.getSimpleName(), surveyId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Survey.class.getSimpleName(), surveyId);
 
 		survey.setUsername(getUserName());
 		survey.setId(surveyId);
@@ -53,10 +56,12 @@ public class SurveyController extends YaController {
 	public void deleteSurvey(String surveyId) {
 
 		Survey original = getSurveyService().getSurvey(surveyId);
-		if (original != null && !original.canUpdate(getUserName())) {
-			// return forbidden();
-			// TODO
-		}
+		
+		if (original == null)
+			throw new EntityNotFoundException(Survey.class.getSimpleName(), surveyId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Survey.class.getSimpleName(), surveyId);
 
 		getSurveyService().delete(surveyId);
 	}
@@ -67,5 +72,6 @@ public class SurveyController extends YaController {
 
 		return getSurveyService().getAll();
 	}
-
+	
+	
 }
