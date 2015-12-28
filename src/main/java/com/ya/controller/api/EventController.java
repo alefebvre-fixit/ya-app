@@ -24,7 +24,7 @@ import com.ya.util.Logger;
 @RestController
 public class EventController extends YaController {
 
-	@RequestMapping("/api/surveys")
+	@RequestMapping("/api/events")
 	public List<Event> events() {
 		Logger.debug("EventAPIController.events()");
 		return getEventService().findAll();
@@ -109,7 +109,7 @@ public class EventController extends YaController {
 		return getEventService().countByGroup(groupId);
 	}
 
-	@RequestMapping("/api/groups/{groupId}/events/size")
+	@RequestMapping("/api/events/{eventId}")
 	public Event event(@PathVariable String eventId) {
 		Logger.debug("EventAPIController.event eventId =" + eventId);
 		return getEventService().findOne(eventId);
