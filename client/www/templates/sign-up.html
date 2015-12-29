@@ -1,0 +1,39 @@
+<ion-view title="Sign-Up">
+	<ion-content class="has-header">
+
+<ion-nav-buttons side="left">
+<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons>
+
+	<div class="list">
+
+		<ion-input class="item item-input item-floating-label">
+			<ion-label>Name</ion-label>
+			<input type="text" ng-model="signup.profile.name" placeholder="name">
+		</ion-input>
+
+		<ion-input class="item item-input item-floating-label">
+			<ion-label>Username</ion-label>
+			<input type="text" ng-model="signup.username" placeholder="username">
+		</ion-input>
+
+		<ion-input class="item item-input item-floating-label">
+			<ion-label>E-mail</ion-label>
+			<input type="email" ng-model="signup.email" placeholder="e-mail">
+		</ion-input>
+
+		<ion-input class="item item-input item-floating-label">
+			<ion-label>Password</ion-label>
+			<input type="password" ng-model="signup.password" placeholder="password">
+		</ion-input>
+
+		<ion-input class="item">
+			<button class="button button-block button-calm" type="button" ng-click="doSignUp()">Sign Up</button>
+		</ion-input>
+		<p ng-show="signup.error" class="help-block">{{signup.error}}</p>
+
+		<ion-input class="item ">
+			<button class="button button-block button-outline button-calm" ng-click="goToSignIn()">Already member? Sign In.</button>
+		</ion-input>
+	</div>
+</ion-content> </ion-view>

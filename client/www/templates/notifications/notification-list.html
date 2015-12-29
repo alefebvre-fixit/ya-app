@@ -1,0 +1,53 @@
+
+
+
+
+<ion-view title="Notifications" hide-back-button="false">
+
+	<ion-nav-buttons side="right">
+		<button class="button button-icon icon ion-android-done-all" ng-click="acknowledgeAll()" ng-disabled="notifications.length <= 0"></button>
+		<button class="button button-icon icon ion-more" ng-click="popover.show($event)"></button>
+	</ion-nav-buttons>
+
+	<ion-content class="has-header">
+		<ion-refresher on-refresh="doRefresh()" spinner="spiral"></ion-refresher>
+			<ion-list class="list">
+				<ion-item ng-repeat="notification in notifications track by notification.id"
+						  class="item item-avatar item-remove-animate">
+					<div ng-show="notification.type=='Participation'" ng-click="goToEvent(notification.eventId)">
+						<img class="img-notification" ng-src="img/users/{{notification.actor}}.jpg">
+						<div ng-switch="notification.status">
+							<h2 ng-switch-when="IN"> <i class="icon ion-record balanced"></i> {{notification.actor}} is in </h2>
+							<h2 ng-switch-when="OUT"> <i class="icon ion-record assertive"></i> {{notification.actor}} is out </h2>
+							<h2 ng-switch-default> <i class="icon ion-record"></i> {{notification.actor}} still has to rsvp </h2>
+						</div>
+						<p ng-click="goToEvent(notification.eventId)">
+							Participation update - <span am-time-ago="notification.notificationDate"></span>
+						</p>
+					</div>
+					<div ng-show="notification.type=='Event'" ng-click="goToEvent(notification.eventId)">
+						<img class="img-notification" ng-src="img/users/{{notification.actor}}.jpg">
+						<h2>{{notification.eventName}}</h2>
+						<p ng-click="goToEvent(notification.eventId)">
+							Event update - <span am-time-ago="notification.notificationDate"></span>
+						</p>
+					</div>
+					<div ng-show="notification.type=='Group'" ng-click="goToGroup(notification.groupId)">
+						<img class="img-notification" ng-src="img/users/{{notification.actor}}.jpg" >
+						<h2>{{notification.groupName}}</h2>
+						<p ng-click="goToEvent(notification.eventId)">
+							Group update - <span am-time-ago="notification.notificationDate"></span>
+						</p>
+
+					</div>
+					<ion-option-button class="button-assertive"
+									   ng-click="acknowledge(notification)">
+						Acknowledge
+					</ion-option-button>
+				</ion-item>
+
+
+			</ion-list>
+
+	</ion-content>
+</ion-view>

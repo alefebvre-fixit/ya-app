@@ -1,0 +1,24 @@
+
+<ion-view title="Participations" hide-back-button="false">
+
+    <ion-content class="has-header" ion-sticky>
+        <ion-refresher on-refresh="doRefresh()" spinner="spiral"></ion-refresher>
+
+        <div class="item" style="text-align: center" ng-show="participations.all.length <= 0">
+            <br>
+            <br>
+            <br>
+            <br>
+            There is no participation yet!
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+
+        <div ng-include data-src="'templates/events/partial/event-participation.html'"></div>
+
+    </ion-content>
+
+
+</ion-view>

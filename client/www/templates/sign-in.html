@@ -1,0 +1,87 @@
+<style>
+
+
+	.login {
+		background:
+		url('img/login-bg.jpg') center;
+	}
+
+
+
+	.item-login{
+		background-color: rgba(50, 50, 50, 0.7) !important; ;
+		border: 0  !important;
+		color: #11c1f3;
+	}
+
+	.item-transparent{
+		background-color: transparent !important;
+		border: 0  !important;
+
+	}
+
+	.no-padding {
+		padding: 0px !important;
+	}
+
+
+	.item-input-login{
+		background-color: transparent !important; ;
+		border: 0  !important;
+		color: #11c1f3 !important;
+		@include input-placeholder(#11c1f3)
+	}
+
+	.avatar {
+		border-radius: 50%;
+		box-shadow: 0 0 0 3px #fff, 0 0 0 1px #999, 0 2px 5px 4px rgba(0,0,0,.1);
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+		top: 15px;
+	}
+
+</style>
+
+
+<ion-view title="SignIn" class="login">
+	<ion-content class="has-header login">
+
+<ion-nav-buttons side="left">
+<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons>
+	<br>
+	<br>
+		<img ng-src="img/ya-logo.png" class="avatar" width="150">
+	<br>
+	<br>
+	<div ng-controller="SignInController">
+		<div class="list list-inset list-transparent" >
+
+			<ion-input class="item item-input item-login">
+				<input type="text" ng-model="signin.username" placeholder="Username" class="item-input-login">
+			</ion-input>
+			<ion-input class="item item-input item-login">
+				<input type="password" ng-model="signin.password" placeholder="Password" class="item-input-login">
+			</ion-input>
+			<ion-input class="item item-transparent no-padding">
+				<button class="button button-block button-calm" ng-click="doSignIn()"><b>Sign In</b></button>
+				<p ng-show="signin.error" class="help-block">{{signin.error}}</p>
+			</ion-input>
+			<a class="button button-block button-clear button-calm" ui-sref="sign-up">Create Free Account</a>
+		</div>
+		<div class="list list-inset list-transparent">
+			<div class="button-bar">
+				<!--<a class="button icon-left ion-social-googleplus" ng-click="googleLogin()">google+</a>-->
+				<a class="button icon-left ion-social-facebook" ng-click="facebookLogin()">Continue with Facebook</a>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+</ion-content> </ion-view>

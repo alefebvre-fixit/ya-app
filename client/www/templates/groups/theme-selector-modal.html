@@ -1,0 +1,89 @@
+<style>
+
+    .theme-title {
+        position: absolute;
+        text-align: left;
+        bottom: 20px;
+        left: 20px;
+        width: 100%;
+        font-size:120%;
+        color: white;
+        text-shadow: 0 1px 0 black;
+    }
+    .theme-image {
+        position: relative;
+        width: 100%; /* for IE 6 */
+    }
+
+    .theme-icon {
+        color: white;
+        font-size: 30px;
+        opacity: 0.9;
+        margin: 0 auto;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .theme-icon-holder {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        display: table;
+    }
+
+    .tinted-image {
+        background:
+            /* top, transparent red, faked with gradient */
+        linear-gradient(
+                rgba(255, 0, 0, 0.45),
+                rgba(255, 0, 0, 0.45)
+        );
+    }
+
+</style>
+
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">Select a Theme</h1>
+    </ion-header-bar>
+    <ion-content style="background-color: #F6F9F9;">
+        <div class="row" ng-repeat="image in images" ng-if="$index % 2 === 0" style="padding:0px;">
+
+            <div class="col col-50 " ng-if="$index < images.length" style="position: relative;" ng-click="selectTheme(images[$index].type)">
+                <img ng-src="img/themes/{{images[$index].type}}-large.jpg" width="100%"/>
+                <div class="theme-title">#{{images[$index].type}}</div>
+
+                <div class="theme-icon-holder" ng-show="images[$index].selected">
+                    <span class="ion-ios-checkmark theme-icon"></span>
+                </div>
+                <div class="theme-icon-holder" ng-show="!images[$index].selected">
+                    <span class="ion-ios-circle-outline theme-icon"></span>
+                </div>
+
+            </div>
+            <div class="col col-50" ng-if="$index + 1 < images.length" style="position: relative;" ng-click="selectTheme(images[$index + 1].type)">
+                <img ng-src="img/themes/{{images[$index + 1].type}}-large.jpg" width="100%" class="theme-image"/>
+                <div class="theme-title">#{{images[$index + 1].type}}</div>
+
+                <div class="theme-icon-holder" ng-show="images[$index + 1].selected">
+                    <span class="ion-ios-checkmark theme-icon"></span>
+                </div>
+                <div class="theme-icon-holder" ng-show="!images[$index + 1].selected">
+                    <span class="ion-ios-circle-outline theme-icon"></span>
+                </div>
+
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-calm">
+        <div class="buttons">
+            <a class="button button-clear button-primary"  ng-click="cancelSelection()">Cancel</a>
+        </div>
+        <h1 class="title"></h1>
+        <div class="buttons">
+            <button type="submit" class="button button-clear button-primary" ng-click="applySelection()" ng-show="allowMultipleSelection"><b>Apply</b></button>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

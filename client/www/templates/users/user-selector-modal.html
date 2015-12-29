@@ -1,0 +1,28 @@
+<style>
+
+</style>
+
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">User selection</h1>
+    </ion-header-bar>
+    <ion-content class="has-header">
+        <div class="list">
+            <a class="item item-avatar" ng-repeat="user in users"
+               ng-click="applySelection(user)">
+                <img ng-src="img/users/{{user.username}}.jpg">
+                <h2>{{user.profile.name}}</h2>
+                <p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
+            </a>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-calm">
+        <div class="buttons">
+            <a class="button button-clear button-primary"  ng-click="cancelSelection()">Cancel</a>
+        </div>
+        <h1 class="title"></h1>
+        <div class="buttons">
+            <button type="submit" class="button button-clear button-primary" ng-click="applySelection()" ng-show="allowMultipleSelection"><b>Apply</b></button>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

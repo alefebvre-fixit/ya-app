@@ -1,0 +1,96 @@
+<style>
+
+
+
+
+	.event-image {
+		position: relative;
+	}
+	.event-title {
+		position: absolute;
+		bottom: 60px;
+		left: 20px;
+		color: white;
+		margin: 0;
+	}
+	.event-address {
+		position: relative;
+		bottom: 40px;
+		left: 20px;
+		color: white;
+		margin: 0;
+	}
+	.event-time {
+		position: relative;
+		bottom: 20px;
+		left: 20px;
+		color: white;
+		margin: 0;
+	}
+
+</style>
+
+<ion-view title="Test">
+	<ion-content class="has-header">
+		<div class="list">
+			<div class="">
+				<img class="event-image" src="img/bg-1.jpg" />
+				<h4 class="event-title"><b>Afternoon Break</b>@French Press</h4>
+				<i class="icon ion-android-calendar event-time"> 6PM</i>
+				<i class="icon ion-location event-address"> 2030 Vallejo st, San Francisco</i>
+			</div>
+			<div class="">
+				<img class="event-image" src="img/bg-1.jpg" />
+				<h4 class="event-title"><b>Morning cofee</b>@French Press</h4>
+				<i class="icon ion-android-calendar event-time"> 6PM</i>
+				<i class="icon ion-location event-address"> 2030 Vallejo st, San Francisco</i>
+			</div>
+		</div>
+
+		<div class="list">
+
+		<div class="card group-header">
+			<a class="item item-avatar" ui-sref="event({ eventId: event.id })">
+				<img ng-src="img/coffee-64-000000.png">
+				<h2>Afternoon Break</h2>
+				<p>@French Press</p>
+			</a>
+			<div class="item item-text-wrap">
+				Let's have a coffee break <br> <br>
+				<i class="icon ion-location calm"></i><i> Blue Bottle, Market Street</i>
+				<p>
+					<a href="#" class="subdued">Start in 5 minutes</a>
+					<progress max="100" value="80" class="calm"></progress>
+				</p>
+			</div>
+		</div>
+		<div class="item item-divider calm">
+			This week
+		</div>
+		<div class="">
+			<div class="">
+				<img class="event-image" src="img/bg-1.jpg" />
+				<h4 class="event-title"><b>Afternoon Break</b>@French Press</h4>
+				<i class="icon ion-android-calendar event-time"> 6PM</i>
+				<i class="icon ion-location event-address"> 2030 Vallejo st, San Francisco</i>
+			</div>
+			<div class="item item-text-wrap">
+				Let's have a coffee break <br> <br>
+				<i class="icon ion-location calm"></i><i> Blue Bottle, Market Street</i>
+				<p>
+					<a href="#" class="subdued">Start in 5 minutes</a>
+					<progress max="100" value="80" class="calm"></progress>
+				</p>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+</ion-content>
+
+</ion-view>

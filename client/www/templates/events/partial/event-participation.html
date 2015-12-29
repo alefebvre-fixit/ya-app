@@ -1,0 +1,30 @@
+<ion-list class="list">
+    <ion-item class="item-divider balanced" ng-show="participations.in.length > 0"> In </ion-item>
+    <ion-item ng-repeat="participation in participations.in track by participation.id" class="item item-avatar" ui-sref="user({username: participation.username})">
+        <img ng-src="img/users/{{participation.username}}.jpg" >
+        <div ng-switch="participation.status">
+            <h2 ng-switch-when="IN"> <i class="icon ion-record balanced"></i> {{participation.username}} is in - <span am-time-ago="participation.modificationDate"></span></h2>
+        </div>
+        <p ng-if="participation.comment"><i class="icon ion-chatbubble"> {{participation.comment}}</i></p>
+    </ion-item>
+    <ion-item class="item-divider assertive" ng-show="participations.out.length > 0"> Out </ion-item>
+    <ion-item ng-repeat="participation in participations.out track by participation.id" class="item item-avatar" ui-sref="user({username: participation.username})">
+        <img ng-src="img/users/{{participation.username}}.jpg" >
+
+        <div ng-switch="participation.status">
+            <h2 ng-switch-when="OUT"> <i class="icon ion-record assertive"></i> {{participation.username}} is out - <span am-time-ago="participation.modificationDate"></span></h2>
+        </div>
+        <p ng-if="participation.comment"><i class="icon ion-chatbubble"> {{participation.comment}}</i></p>
+    </ion-item>
+    <ion-item class="item-divider" ng-show="participations.rsvp.length > 0"> Rsvp </ion-item>
+    <ion-item ng-repeat="participation in participations.rsvp track by participation.id" class="item item-avatar" ui-sref="user({username: participation.username})">
+        <img ng-src="img/users/{{participation.username}}.jpg" >
+
+        <div ng-switch="participation.status">
+            <h2 ng-switch-default> <i class="icon ion-record"></i> {{participation.username}} still has to rsvp - <span am-time-ago="participation.modificationDate"></span></h2>
+        </div>
+        <p ng-if="participation.comment"><i class="icon ion-chatbubble"> {{participation.comment}}</i></p>
+
+    </ion-item>
+
+</ion-list>

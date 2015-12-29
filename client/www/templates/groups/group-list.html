@@ -1,0 +1,33 @@
+
+<ion-view title="Groups" hide-back-button="true">
+
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-plus" ng-click="openCreateGroup()"></a>
+        <button class="button button-icon icon ion-more" ng-click="popover.show($event)"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header">
+        <ion-refresher on-refresh="doRefresh()" spinner="spiral"></ion-refresher>
+
+        <div class="item" style="text-align: center" ng-show="groups.length <= 0">
+            <br>
+            <br>
+            <br>
+            <br>
+
+            You have no group yet!
+            <a class="button icon-left ion-plus button-positive button-block" ui-sref="app.project-new">Create a New Group</a>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+
+        <div ng-repeat="group in groups track by group.id">
+            <div ng-include data-src="'templates/groups/partial/group-card-item.html'"></div>
+        </div>
+    </ion-content>
+
+
+</ion-view>

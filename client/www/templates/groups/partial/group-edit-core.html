@@ -1,0 +1,46 @@
+    <ion-content>
+        <div class="list">
+            <div class="group-module">
+               <button type="button" class="button button-calm button-small ion-edit button-follow" ng-click="openSelector()">
+                    Change theme
+                </button>
+                <img ng-src="img/themes/{{group.type}}-large.jpg" >
+
+                <div class="group-icon-holder">
+                    <span class="ion-ios-people group-icon calm"></span>
+                </div>
+                <header>
+                    <h3 ng-show="group.name">
+                        {{group.name}}
+                    </h3>
+                    <h3 ng-show="!group.name">
+                        Group Name
+                    </h3>
+                    <h5>
+                        #{{group.type}}
+                    </h5>
+                </header>
+            </div>
+            <ion-input class="item item-input item-floating-label">
+                <ion-label>Group Name</ion-label>
+                <input type="text" name="name" placeholder="Type group name here..." ng-model="group.name" ng-minlength="5" ng-maxlength="20" required>
+            </ion-input>
+            <div ng-show="groupForm.$submitted && groupForm.name.$error" ng-messages="groupForm.name.$error">
+                <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+            </div>
+            <ion-input class="item item-input item-floating-label">
+                <ion-label>Description</ion-label>
+                <input type="text" name="description" placeholder="Describe your group here..." ng-model="group.description" ng-minlength="5" ng-maxlength="140" required>
+            </ion-input>
+            <div ng-show="groupForm.$submitted && groupForm.description.$error" ng-messages="groupForm.description.$error">
+                <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+            </div>
+            <ion-input class="item item-input item-floating-label">
+                <ion-label>Location</ion-label>
+                <input type="text" name="location" placeholder="Type group location here..." ng-model="group.city" required>
+            </ion-input>
+            <div ng-show="groupForm.$submitted && groupForm.location.$error" ng-messages="groupForm.location.$error">
+                <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+            </div>
+        </div>
+    </ion-content>

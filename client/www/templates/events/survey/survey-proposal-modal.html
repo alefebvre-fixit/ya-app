@@ -1,0 +1,21 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title">Proposal</h1>
+        <button class="button button-clear button-primary" ng-click="closeProposal()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <ion-input class="item item-input item-floating-label">
+                <ion-label>Name</ion-label>
+                <input type="text" placeholder="Type a name here..." ng-model="proposal.name">
+            </ion-input>
+            <ion-input class="item item-input item-floating-label">
+                <ion-label>Comment</ion-label>
+                <input type="text" placeholder="Type a short description here..." ng-model="proposal.description">
+            </ion-input>
+        </div>
+        <div class="list list-inset list-transparent" >
+            <button class="button button-block button-calm" ng-click="applyProposal(proposal)"><b>Apply</b></button>
+        </div>
+    </ion-content>
+</ion-modal-view>

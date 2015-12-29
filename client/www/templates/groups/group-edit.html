@@ -1,0 +1,20 @@
+
+<ion-view view-title="Edit Group">
+
+    <form name="groupForm" novalidate ng-submit="saveGroup(groupForm)">
+
+    <div ng-include data-src="'templates/groups/partial/group-edit-core.html'"></div>
+
+    <ion-footer-bar align-title="left" class="bar-calm">
+        <div class="buttons">
+            <a class="button button-clear button-primary"  ui-sref="group({ groupId: group.id })">Cancel</a>
+        </div>
+        <h1 class="title"></h1>
+        <div class="buttons">
+            <button type="submit" class="button button-clear button-primary"><b>Save</b></button>
+        </div>
+    </ion-footer-bar>
+
+    </form>
+
+</ion-view>

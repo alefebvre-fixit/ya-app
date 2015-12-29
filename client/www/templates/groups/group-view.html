@@ -1,0 +1,104 @@
+<style>
+
+
+
+</style>
+
+
+<ion-view view-title="Group">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-more" ng-click="popover.show($event)" ng-show="isSponsor(group)"></button>
+    </ion-nav-buttons>
+<ion-content>
+
+
+<div class="group-module">
+    <div ng-show="!isSponsor(group)">
+        <button class="button button-calm button-small ion-star button-follow" ng-click="follow(group)" ng-show="!isFavorite(group)">
+            Follow
+        </button>
+        <button class="button button-calm button-small ion-star energized button-follow" ng-click="unfollow(group)" ng-show="isFavorite(group)">
+            Following
+        </button>
+    </div>
+    <div ng-show="isSponsor(group)">
+        <button class="button button-calm button-small ion-calendar button-create-event" ng-click="openCreateEvent(group)">
+            Create Event
+        </button>
+    </div>
+    <img ng-src="img/themes/{{group.type}}-large.jpg" class="image-overlay">
+
+    <div class="group-icon-holder">
+        <span class="ion-ios-people group-icon calm"></span>
+    </div>
+    <header>
+        <h3>
+            {{group.name}}
+        </h3>
+        <h5>
+            #{{group.type}}
+        </h5>
+    </header>
+</div>
+
+<div class="row" style="background-color: white">
+    <a class="col statistic" ui-sref="group-events({groupId: group.id})">
+        <p class="statistic">
+            <b>{{summary.eventSize}}</b>
+            <br>
+        <p class="statistic-label">Events</p>
+    </a>
+    <a class="col statistic" ui-sref="group-comments({groupId: group.id})">
+        <p class="statistic">
+        </p>
+    </a>
+    <a class="col statistic" ui-sref="group-followers({groupId: group.id})">
+        <p class="statistic">
+            <b>{{summary.followerSize}}</b>
+            <br>
+        <p class="statistic-label">Followers</p>
+    </a>
+
+</div>
+
+        <div class="row" style="background-color: white">
+            <div class="col">
+                {{group.description}}
+            </div>
+        </div>
+
+        <a class="item item-icon-left item-icon-right" href="#">
+            <i class="icon ion-location"></i>
+            {{group.city}}, {{group.country}}
+            <i class="icon ion-ios-arrow-forward"></i>
+        </a>
+        <div class="row" style="background-color: white">
+            <div class="col">
+                <p class="statistic-label" style="text-align: left">Presented By :</p>
+            </div>
+        </div>
+        <div class="row" style="background-color: white" ui-sref="group-sponsors({groupId: group.id})">
+            <div class="col-16" style="padding: 5px">
+                <img ng-src="img/users/{{group.username}}.jpg" class="sponsor-avatar owner-avatar">
+            </div>
+            <div class="col-16" ng-repeat="sponsor in group.sponsors | limitTo: 8" style="padding: 5px">
+                <img ng-src="img/users/{{sponsor}}.jpg" class="sponsor-avatar">
+            </div>
+        </div>
+
+        <ion-item class="item-divider item-button-right calm" ng-show="summary.eventSize > 0"> Events
+        </ion-item>
+        <div ng-repeat="event in summary.lastEvents">
+            <div ng-include data-src="'templates/events/partial/event-list-item.html'"></div>
+        </div>
+
+        <a class="item item-icon-right" ui-sref="group-events({groupId: group.id})" ng-show="summary.eventSize>5">
+            View all Events...
+            <span class="icon ion-chevron-right"></span>
+        </a>
+        <br>
+
+
+
+    </ion-content>
+</ion-view>

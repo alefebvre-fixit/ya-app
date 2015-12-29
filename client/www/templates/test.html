@@ -1,0 +1,241 @@
+<style>
+
+
+
+	.cbp_tmtimeline {
+		margin: 30px 0 0 0;
+		padding: 0;
+		list-style: none;
+		position: relative;
+	}
+
+	/* The line */
+	.cbp_tmtimeline:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 5px;
+		background: #afdcf8;
+		left: 10%;
+		margin-left: -8px;
+	}
+
+	.cbp_tmtimeline > li {
+		position: relative;
+	}
+
+	/* Right content */
+	.cbp_tmtimeline > li .cbp_tmlabel {
+		margin: 0 0 15px 20%;
+		background: #fff;
+		color: #fff;
+		padding: 2em;
+		font-size: 1.2em;
+		font-weight: 300;
+		line-height: 1.4;
+		position: relative;
+		border-radius: 1px;
+		box-shadow: 0 0 0 2px #fff, 0 0 0 2px #999, 0 2px 2px 2px rgba(0,0,0,.2);
+		border-left: 5px solid #11c1f3;
+
+	}
+
+	/* Right content */
+	.cbp_tmtimeline > li .cbp_tmlabel2 {
+		margin: 0 15px 15px 20%;
+		position: relative;
+	}
+
+	/* The triangle */
+	.cbp_tmtimeline > li .cbp_tmlabel2:before {
+		right: 100%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-right-color: #11c1f3;
+		border-width: 20px;
+		top: 20px;
+
+	}
+
+	/* The triangle */
+	.cbp_tmtimeline > li .cbp_tmlabel:after {
+		right: 100%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-right-color: #11c1f3;
+		border-width: 20px;
+		top: 20px;
+	}
+
+
+	/* The icons */
+	.cbp_tmtimeline > li .cbp_tmicon {
+		width: 40px;
+		height: 40px;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		font-size: 1.4em;
+		line-height: 40px;
+		-webkit-font-smoothing: antialiased;
+		position: absolute;
+		color: #cccc33;
+		background: #46a4da;
+		border-radius: 50%;
+		box-shadow: 0 0 0 5px #afdcf8;
+		text-align: center;
+		left: 10%;
+		top: 0;
+		margin: 0 0 0 -25px;
+	}
+
+
+
+
+
+
+
+</style>
+
+<ion-view title="Test">
+	<ion-content class="has-header">
+
+		<ul class="cbp_tmtimeline">
+			<li>
+				<img ng-src="img/coffee-64-000000.png" class="cbp_tmicon cbp_tmicon-phone">
+				<div class="group-header cbp_tmlabel2">
+					<a class="item item-avatar" ui-sref="event({ eventId: event.id })">
+						<img ng-src="img/coffee-64-000000.png">
+						<h2>Afternoon Break</h2>
+						<p>@French Press</p>
+					</a>
+					<div class="item item-text-wrap">
+						Let's have a coffee break <br> <br>
+						<i class="icon ion-location calm"></i><i> Blue Bottle, Market Street</i>
+						<p>
+							<a href="#" class="subdued">Start in 5 minutes</a>
+							<progress max="100" value="80" class="calm"></progress>
+						</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="cbp_tmicon cbp_tmicon-screen"></div>
+				<div class="cbp_tmlabel">
+					<h2>Greens radish arugula</h2>
+					<p>Caulie dandelion maize...</p>
+				</div>
+			</li>
+			<li>
+				<div class="cbp_tmicon cbp_tmicon-mail"></div>
+				<div class="cbp_tmlabel">
+					<h2>Sprout garlic kohlrabi</h2>
+					<p>Parsnip lotus root...</p>
+				</div>
+			</li>
+			<li>
+\				<div class="cbp_tmicon cbp_tmicon-phone"></div>
+				<div class="cbp_tmlabel">
+					<h2>Watercress ricebean</h2>
+					<p>Peanut gourd nori...</p>
+				</div>
+			</li>
+			<li>
+				<div class="cbp_tmicon cbp_tmicon-earth"></div>
+				<div class="cbp_tmlabel">
+					<h2>Courgette daikon</h2>
+					<p>Parsley amaranth tigernut...</p>
+				</div>
+			</li>
+		</ul>
+
+
+
+
+
+		<div class="item item-divider">
+			Participations
+		</div>
+		<div class="list">
+			<a class="item item-avatar"
+			   ui-sref="app.card-view({projectId: contribution.projectId, cardId: contribution.cardId})">
+				<img ng-src="img/john.jpg">
+				<h2><i class="icon ion-record assertive"></i> John is Out  - 2 hours ago</h2>
+				<p><i class="icon ion-chatbubble"></i> <i>this is a comment on my participation, apparently I had something to say</i></p>
+			</a>
+			<a class="item item-avatar"
+			   ui-sref="app.card-view({projectId: contribution.projectId, cardId: contribution.cardId})">
+				<img ng-src="img/antoinelefebvre.jpg">
+				<h2><i class="icon ion-record balanced"></i> Antoine is In  - 3 hours ago</h2>
+				<p><i class="icon ion-chatbubble"></i> <i>this is a comment on my participation, apparently I had something to say</i></p>
+			</a>
+			<a class="item item-avatar"
+			   ui-sref="app.card-view({projectId: contribution.projectId, cardId: contribution.cardId})">
+				<img ng-src="img/antoinelefebvre.jpg">
+				<h2><i class="icon ion-record balanced"></i> Antoine is In  - 3 hours ago</h2>
+				<p><i class="icon ion-chatbubble"></i> <i>this is a comment on my participation, apparently I had something to say</i></p>
+			</a>
+			<a class="item item-avatar"
+			   ui-sref="app.card-view({projectId: contribution.projectId, cardId: contribution.cardId})">
+				<img ng-src="img/paul.jpg">
+				<h2 class="icon ion-record dark">  paul is rsvp - 2 hours ago</h2>
+				<p><i class="icon ion-chatbubble"></i> this is a comment on my participation, apparently I had something to say</i></p>
+			</a>
+		</div>
+
+
+
+		<div class="item item-divider calm">
+			Today
+		</div>
+		<div class="card group-header">
+			<a class="item item-avatar" ui-sref="event({ eventId: event.id })">
+				<img ng-src="img/coffee-64-000000.png">
+				<h2>Afternoon Break</h2>
+				<p>@French Press</p>
+			</a>
+			<div class="item item-text-wrap">
+				Let's have a coffee break <br> <br>
+				<i class="icon ion-location calm"></i><i> Blue Bottle, Market Street</i>
+				<p>
+					<a href="#" class="subdued">Start in 5 minutes</a>
+					<progress max="100" value="80" class="calm"></progress>
+				</p>
+			</div>
+		</div>
+		<div class="item item-divider calm">
+			This week
+		</div>
+		<div class="card group-header">
+			<a class="item item-avatar" ui-sref="event({ eventId: event.id })">
+				<img ng-src="img/coffee-64-000000.png">
+				<h2>Afternoon Break</h2>
+				<p>@French Press</p>
+			</a>
+			<div class="item item-text-wrap">
+				Let's have a coffee break <br> <br>
+				<i class="icon ion-location calm"></i><i> Blue Bottle, Market Street</i>
+				<p>
+					<a href="#" class="subdued">Start in 5 minutes</a>
+					<progress max="100" value="80" class="calm"></progress>
+				</p>
+			</div>
+		</div>
+		<div class="item item-divider calm">
+			This month
+		</div>
+
+</ion-content>
+
+</ion-view>

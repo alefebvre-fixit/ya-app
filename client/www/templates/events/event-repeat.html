@@ -1,0 +1,23 @@
+
+<ion-view view-title="Repeat Event">
+
+        <form name="eventForm" novalidate ng-submit="saveEvent(eventForm)">
+            <ion-content>
+                <div ng-include data-src="'templates/events/partial/event-edit-core.html'"></div>
+            </ion-content>
+
+            <ion-footer-bar align-title="left" class="bar-calm">
+                <div class="buttons">
+                    <a class="button button-clear button-primary"  ui-sref="event({ eventId: original.id })">Cancel</a>
+                </div>
+                <h1 class="title"></h1>
+                <div class="buttons">
+                    <button type="submit" class="button button-clear button-primary"><b>Save</b></button>
+                </div>
+            </ion-footer-bar>
+        </form>
+
+</ion-view>
+
+
+

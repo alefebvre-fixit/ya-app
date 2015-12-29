@@ -1,0 +1,29 @@
+<ion-view title="Event Comments">
+
+    <ion-nav-buttons side="left">
+    </ion-nav-buttons>
+
+    <ion-content class="has-header">
+
+        <div class="bar bar-header item-input-inset">
+            <ion-input class="item-input-wrapper">
+                <input type="search" placeholder="Add a comment..." ng-model="comment.content">
+            </ion-input>
+            <button class="button button-clear" ng-click="postComment(comment)" ng-disabled="!comment.content">
+                <i class="icon ion-paper-airplane calm"></i>
+            </button>
+        </div>
+
+        <div class="list">
+            <a class="item item-avatar"  collection-repeat="comment in comments">
+                <img ng-src="img/users/{{comment.username}}.jpg">
+                <p>{{comment.username}} - <span am-time-ago="comment.commentDate"></span></p>
+                <h2><i class="icon ion-ios-chatbubble calm"></i> {{comment.content}}</h2>
+            </a>
+        </div>
+
+    </ion-content>
+
+
+
+</ion-view>

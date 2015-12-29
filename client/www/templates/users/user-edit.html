@@ -1,0 +1,59 @@
+
+<ion-view view-title="Edit Event">
+
+        <form name="eventForm" novalidate ng-submit="saveProfile(profile)">
+            <ion-content>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>Username</ion-label>
+                    <input type="text" placeholder="Name" ng-model="user.username">
+                </ion-input>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>Username</ion-label>
+                    <input type="text" placeholder="Name" ng-model="user.email">
+                </ion-input>
+                <div class="item item-divider">
+                    Profile
+                </div>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>Name</ion-label>
+                    <input type="text" placeholder="Name" ng-model="profile.name">
+                </ion-input>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>City</ion-label>
+                    <input type="text" placeholder="City" ng-model="profile.city">
+                </ion-input>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>Country</ion-label>
+                    <input type="text" placeholder="Country" ng-model="profile.country">
+                </ion-input>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>Website</ion-label>
+                    <input type="text" placeholder="Website" ng-model="profile.website">
+                </ion-input>
+                <ion-input class="item item-input item-floating-label">
+                    <ion-label>Biography</ion-label>
+                    <textarea placeholder="Biography" ng-model="profile.biography" rows="5"></textarea>
+                </ion-input>
+                <ion-input class="item item-input item-floating-label" ng-click="openSelector()">
+                    <ion-label>Interest</ion-label>
+                    <input type="text" placeholder="Interest" ng-model="profile.interest">
+                </ion-input>
+                <div class="item item-divider">
+                    Notification
+                </div>
+            </ion-content>
+            <ion-footer-bar align-title="left" class="bar-calm">
+                <div class="buttons">
+                    <a class="button button-clear button-primary"  ui-sref="user({ username: user.username })">Cancel</a>
+                </div>
+                <h1 class="title"></h1>
+                <div class="buttons">
+                    <button type="submit" class="button button-clear button-primary"><b>Save</b></button>
+                </div>
+            </ion-footer-bar>
+        </form>
+
+</ion-view>
+
+
+

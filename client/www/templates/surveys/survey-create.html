@@ -1,0 +1,21 @@
+
+<ion-view view-title="Create Survey">
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+
+        <form name="surveyForm" novalidate ng-submit="saveSurvey(surveyForm)">
+            <ion-content>
+                <div ng-include data-src="'templates/surveys/partial/survey-edit-core.html'"></div>
+            </ion-content>
+            <ion-footer-bar align-title="left" class="bar-calm">
+                <div class="buttons">
+                    <a class="button button-clear button-primary"  ui-sref="event({ eventId: survey.eventId })">Cancel</a>
+                </div>
+                <h1 class="title"></h1>
+                <div class="buttons">
+                    <button type="submit" class="button button-clear button-primary"><b>Save</b></button>
+                </div>
+            </ion-footer-bar>
+        </form>
+
+</ion-view>

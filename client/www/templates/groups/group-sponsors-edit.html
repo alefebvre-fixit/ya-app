@@ -1,0 +1,36 @@
+<ion-view title="Sponsors" hide-back-button="false">
+
+	<ion-nav-buttons side="right">
+		<a class="button button-icon icon ion-plus" ng-click="openSelector()"></a>
+	</ion-nav-buttons>
+
+	<ion-content class="has-header">
+		<ion-list>
+			<ion-item class="item item-avatar item-remove-animate">
+				<img ng-src="img/users/{{owner.username}}.jpg" class="owner-avatar">
+				<h2>{{owner.profile.name}}</h2>
+				<p><i class="icon ion-location"> {{owner.profile.city}}, {{owner.profile.country}}</i></p>
+			</ion-item>
+			<ion-item ng-repeat="user in sponsors track by user.id" class="item item-avatar item-remove-animate">
+				<img ng-src="img/users/{{user.username}}.jpg">
+				<h2>{{user.profile.name}}</h2>
+				<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
+				<ion-option-button class="button-assertive"
+								   ng-click="remove(user)">
+					Remove
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+
+
+	<ion-footer-bar align-title="left" class="bar-calm">
+		<div class="buttons">
+			<a class="button button-clear button-primary"  ui-sref="group-sponsors({ groupId: group.id })">Cancel</a>
+		</div>
+		<h1 class="title"></h1>
+		<div class="buttons">
+			<button type="button" class="button button-clear button-primary" ng-click="save()"><b>Save</b></button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

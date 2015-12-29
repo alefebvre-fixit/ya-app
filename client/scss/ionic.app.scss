@@ -1,0 +1,486 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+$stable:                          #f8f8f8 !default;
+$light:                           #FFFFFF !default;
+
+$calm:                            #11c1f3 !default;
+$assertive:                       #FF3D7F !default;
+$balanced:                        #7FC7AF !default;
+
+
+$base-background-color:           #F6F9F9 !default;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+
+//http://www.colourlovers.com/palette/932683/Compatible
+
+$palette-1:                        #11c1f3 !default;
+$palette-2:                        #7FC7AF !default;
+$palette-3:                        #DAD8A7 !default;
+$palette-4:                        #FF9E9D !default;
+$palette-5:                        #FF3D7F !default;
+
+.palette-1{
+  color: $palette-1;
+}
+.palette-2{
+  color: $palette-2;
+}
+.palette-3{
+  color: $palette-3;
+}
+.palette-4{
+  color: $palette-4;
+}
+.palette-5{
+  color: $palette-5;
+}
+
+.badge.badge-palette-1 {
+  background-color: $palette-1;
+  color: #fff;
+}
+.badge.badge-palette-2 {
+  background-color: $palette-2;
+  color: #fff;
+}
+.badge.badge-palette-3 {
+  background-color: $palette-3;
+  color: #fff;
+}
+.badge.badge-palette-4 {
+  background-color: $palette-4;
+  color: #fff;
+}
+.badge.badge-palette-5 {
+  background-color: $palette-5;
+  color: #fff;
+}
+
+
+
+.statistic{
+  margin: 0;
+  color: $palette-5;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.group-header{
+  border-top: 5px solid $palette-1;
+}
+
+.event-header{
+  border-left: 5px solid $calm;
+}
+
+.statistic-label{
+  margin: 0;
+  text-align: center;
+  text-decoration: none !important;
+  color: $dark;
+}
+
+.item-avatar-icon i:first-child, .item-avatar .item-img {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 36px;
+  max-width: 40px;
+  max-height: 40px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.col-center{
+  margin: 0;
+  text-align: center;
+}
+
+.bar-header {
+  top: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  box-shadow: none;
+}
+
+
+.bar-subheader{
+  box-shadow: none;
+}
+
+.popup-button{
+
+}
+
+.error-container {
+  margin: 5px 0;
+}
+
+.error-container:last-child {
+  margin: 5px 0 0;
+}
+
+.error {
+  padding: 10px 16px;
+  font-size: 11px;
+  color: #555;
+  vertical-align: middle;
+}
+
+.error i {
+  font-size: 24px;
+  color: #B83E2C;
+  vertical-align: middle;
+}
+
+.last-error-container > .error {
+  padding: 10px 16px 0;
+}
+
+.has-errors {
+  border-bottom: 3px solid #B83E2C;
+}
+
+.no-errors {
+  border-bottom: 3px solid green;
+}
+
+.list-transparent{
+  background-color: transparent !important; ;
+  border: 0  !important;
+  color: #11c1f3;
+}
+
+
+.item-notification {
+  padding-left: 72px;
+  min-height: 72px; }
+.img-notification  {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  max-width: 40px;
+  max-height: 40px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; }
+
+
+
+.event-image {
+  position: relative;
+  width: 100%; /* for IE 6 */
+}
+
+.event-title {
+  position: absolute;
+  text-align: left;
+  bottom: 70px;
+  left: 10px;
+  width: 100%;
+  font-size:200%;
+  color: white;
+  text-shadow: 0 1px 0 black;
+}
+.event-group {
+  position: absolute;
+  text-align: left;
+  bottom: 40px;
+  left: 10px;
+  width: 100%;
+  font-size:150%;
+  color: white;
+  text-shadow: 0 1px 0 black;
+}
+
+
+.group-image {
+  position: relative;
+  width: 100%; /* for IE 6 */
+}
+
+.group-title {
+  position: absolute;
+  text-align: left;
+  bottom: 70px;
+  left: 10px;
+  width: 100%;
+  font-size:200%;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  z-index: 10;
+}
+.group-subtitle {
+  position: absolute;
+  text-align: left;
+  bottom: 40px;
+  left: 10px;
+  width: 100%;
+  font-size:150%;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  z-index: 10;
+}
+
+.card-title-shadow
+{
+  position: absolute;
+  z-index: 10;
+  bottom: 0px;
+  padding: 15px;
+  text-align: left;
+  background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.4)); /* W3C */
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.event-thumbnail {
+  border-radius: 10%;
+}
+
+.group-module {
+  height:260px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid #dddddd;
+  background: linear-gradient(
+                  to top,
+                  rgba(0, 0, 0, 0),
+                  rgba(0, 0, 0, 0.4)
+  );
+  background-blend-mode: screen;
+}
+.group-module > header {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  width: 100%;
+  text-align: left;
+}
+.group-module > header > h3  {
+  margin: 0;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  font-size: 180%;
+}
+.group-module > header > h5  {
+  margin: 0;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  font-size: 110%;
+}
+
+.button-create-event{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.group-icon {
+  font-size: 60px;
+  color: white;
+  margin: 0 auto;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-shadow: 0 2px 0 black;
+}
+.group-icon-holder {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 70px;
+  height: 70px;
+  display: table;
+}
+
+.col-sponsors {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 16%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 16%;
+  -ms-flex: 0 0 16%;
+  flex: 0 0 16%;
+  max-width: 16%; }
+
+.sponsor-avatar  {
+  max-width: 40px;
+  max-height: 40px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.owner-avatar{
+  border:2px solid rgba(17,193,243, 0.8) ;
+}
+
+.event-module {
+  height:260px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid #dddddd;
+  background: linear-gradient(
+                  to top,
+                  rgba(0, 0, 0, 0),
+                  rgba(0, 0, 0, 0.4)
+  );
+  background-blend-mode: screen;
+}
+.event-module > header {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  width: 100%;
+  text-align: left;
+}
+.event-module > header > h3  {
+  margin: 0;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  font-size: 180%;
+}
+.event-module > header > h5  {
+  margin: 0;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  font-size: 110%;
+}
+
+.button-follow{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.button-repeat-event{
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+}
+
+.event-icon {
+  font-size: 60px;
+  color: white;
+  margin: 0 auto;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-shadow: 0 2px 0 black;
+}
+
+.event-icon-holder {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 70px;
+  height: 70px;
+  display: table;
+}
+
+.image-overlay{
+  position:relative;
+  z-index:-1;
+  display:block;
+}
+
+.frame-overlay{
+  background: linear-gradient(
+                  to top,
+                  rgba(0, 0, 0, 0),
+                  rgba(0, 0, 0, 0.4)
+  );
+  background-blend-mode: screen;
+}
+
+
+
+
+
+
+/*popup override*/
+.popup-container
+{
+
+}
+
+.popup
+{
+  padding: 12px;
+  border-radius: 10px !important;
+}
+
+.popup-head
+{
+
+}
+
+.popup-title
+{
+  color: #575757;
+  font-size: 30px !important;
+  text-align: center;
+  font-weight: 600;
+  margin: 25px 0;
+  padding: 0;
+  line-height: 40px;
+}
+
+.popup-body
+{
+  color: #797979;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: inherit;
+  float: none;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+.popup-buttons .button
+{
+  background-color: #5dc2f1;
+  color: white;
+  border: none;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 500;
+  -webkit-border-radius: 4px;
+  border-radius: 5px !important;
+  margin: 26px 5px 0 5px;
+  cursor: pointer;
+}
+
+.popup-buttons .button.activated
+{
+  background-color: $palette-1;
+}
+

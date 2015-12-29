@@ -1,0 +1,24 @@
+
+<ion-view title="Groups">
+	<ion-nav-buttons side="right">
+	</ion-nav-buttons>
+
+	<ion-content class="has-header">
+
+		<ion-header-bar class="bar-subheader item-input-inset">
+			<ion-input class="item-input-wrapper">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" placeholder="Search" ng-model="filter">
+			</ion-input>
+		</ion-header-bar>
+
+		<ion-refresher on-refresh="doRefresh()" spinner="spiral"></ion-refresher>
+
+		<div ng-repeat="group in groups | filter:filter track by group.id ">
+			<div ng-include data-src="'templates/groups/partial/group-card-item.html'"></div>
+		</div>
+
+	</ion-content>
+
+
+</ion-view>

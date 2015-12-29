@@ -1,0 +1,20 @@
+<ion-view title="Followers" class="view-positive">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
+
+	<ion-content class="has-header">
+
+		<ion-header-bar class="bar-subheader item-input-inset">
+			<ion-input class="item-input-wrapper">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" placeholder="Search" ng-model="filter">
+			</ion-input>
+		</ion-header-bar>
+
+		<div class="list">
+			<div ng-include data-src="'templates/users/partial/user-list-item.html'"></div>
+		</div>
+
+	</ion-content>
+
+</ion-view>

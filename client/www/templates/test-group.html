@@ -1,0 +1,250 @@
+<style>
+
+	.group-title-underlined {
+		position: absolute;
+		bottom: 70px;
+		left: 10px;
+		background: rgba(17,193,243, 0.8);
+		padding: 4px 8px;
+		color: white;
+		margin: 0;
+		font: 14px Sans-Serif;
+		font-size:180%;
+		z-index: 10;
+
+	}
+
+	.group-subtitle-underlined {
+		position: absolute;
+		bottom: 30px;
+		left: 10px;
+		padding: 4px 8px;
+		color: white;
+		font: 14px Sans-Serif;
+		background: rgba(17,193,243, 0.8);
+		font-size:130%;
+		z-index: 10;
+
+	}
+
+	.group-title-underlined-black {
+		position: absolute;
+		bottom: 70px;
+		left: 10px;
+		background: rgba(0,0,0, 0.6);
+		padding: 4px 8px;
+		color: white;
+		margin: 0;
+		font: 14px Sans-Serif;
+		font-size:180%;
+		z-index: 10;
+
+	}
+
+	.group-subtitle-underlined-black {
+		position: absolute;
+		bottom: 30px;
+		left: 10px;
+		padding: 4px 8px;
+		color: white;
+		font: 14px Sans-Serif;
+		background: rgba(0,0,0, 0.6);
+		font-size:130%;
+		z-index: 10;
+	}
+
+	.frame-overlay{
+		background: linear-gradient(
+				to top,
+				rgba(0, 0, 0, 0),
+				rgba(0, 0, 0, 0.9)
+		);
+	}
+
+	.card-title-shadow
+	{
+		background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.4)); /* W3C */
+		width: 100%;
+		height: 100%;
+	}
+
+	.text-on-image
+	{
+		position: absolute;
+		z-index: 10;
+		bottom: 0px;
+		padding: 15px;
+		text-align: left;
+	}
+
+	.high-index
+	{
+		z-index: 10;
+	}
+
+
+</style>
+
+
+<ion-view title="Groups" hide-back-button="false">
+
+
+	<ion-content class="has-header">
+
+		<div class="list card">
+			<div class="item item-image">
+				<img ng-src="img/themes/Soccer-large.jpg">
+				<div class="text-on-image">
+				</div>
+				<div class="group-title">Soccer Fours</div>
+				<div class="group-subtitle">#Soccer</div>
+			</div>
+			<div class="item item-text-wrap ">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+		<div class="list card group-header">
+			<div class="item item-image">
+				<img ng-src="img/themes/Soccer-large.jpg">
+				<div class="text-on-image card-title-shadow">
+				</div>
+				<div class="group-title high-index">Soccer Fours Final</div>
+				<div class="group-subtitle high-index">#Soccer</div>
+			</div>
+			<div class="item item-text-wrap ">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+
+		<div class="list card group-header">
+			<div class="item item-image">
+				<img ng-src="img/themes/Soccer-large.jpg">
+				<div class="text-on-image card-title-shadow">
+				</div>
+				<div class="group-title-underlined">Soccer Fours</div>
+				<div class="group-subtitle-underlined">#Soccer</div>
+			</div>
+			<div class="item item-text-wrap ">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+		<div class="card group-header frame-overlay">
+
+			<div class="item item-image " ui-sref="group({ groupId: group.id })">
+				<img ng-src="img/themes/Soccer-large.jpg">
+				<div class="group-title-underlined">Soccer Fours</div>
+				<div class="group-subtitle-underlined">#Soccer</div>
+			</div>
+			<div class="item item-text-wrap">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+		<div class="card group-header frame-overlay">
+
+			<div class="item item-image" ui-sref="group({ groupId: group.id })">
+				<img ng-src="img/themes/Soccer-large.jpg">
+				<div class="group-title-underlined-black">Soccer Fours</div>
+				<div class="group-subtitle-underlined-black">#Soccer</div>
+			</div>
+			<div class="item item-text-wrap">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+
+
+		<div class="list card">
+			<div class="item item-image">
+				<img ng-src="img/themes/Restaurant-large.jpg">
+				<div class="text-on-image">
+				</div>
+				<div class="group-title">Restaurant Fours</div>
+				<div class="group-subtitle">#Restaurant</div>
+			</div>
+			<div class="item item-text-wrap ">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+		<div class="list card">
+			<div class="item item-image">
+				<img ng-src="img/themes/Restaurant-large.jpg">
+				<div class="text-on-image card-title-shadow">
+				</div>
+				<div class="group-title high-index">Restaurant Fours</div>
+				<div class="group-subtitle high-index">#Restaurant</div>
+			</div>
+			<div class="item item-text-wrap ">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+
+		<div class="list card">
+			<div class="item item-image">
+				<img ng-src="img/themes/Restaurant-large.jpg">
+				<div class="text-on-image card-title-shadow">
+				</div>
+				<div class="group-title-underlined">Restaurant Fours</div>
+				<div class="group-subtitle-underlined">#Restaurant</div>
+			</div>
+			<div class="item item-text-wrap ">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+		<div class="card group-header frame-overlay">
+
+			<div class="item item-image " ui-sref="group({ groupId: group.id })">
+				<img ng-src="img/themes/Restaurant-large.jpg">
+				<div class="group-title-underlined">Restaurant Fours</div>
+				<div class="group-subtitle-underlined">#Restaurant</div>
+			</div>
+			<div class="item item-text-wrap">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+		<div class="card group-header frame-overlay">
+
+			<div class="item item-image" ui-sref="group({ groupId: group.id })">
+				<img ng-src="img/themes/Restaurant-large.jpg">
+				<div class="group-title-underlined-black">Restaurant Fours</div>
+				<div class="group-subtitle-underlined-black">#Restaurant</div>
+			</div>
+			<div class="item item-text-wrap">
+				<i class="icon ion-android-calendar calm"></i><i> 12 Events</i>
+				<br>
+				<i class="icon ion-location calm"></i><i>  San Francisco, United States</i>
+			</div>
+		</div>
+
+
+
+
+	</ion-content>
+
+
+</ion-view>

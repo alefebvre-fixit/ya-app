@@ -1,0 +1,61 @@
+
+<div class="list">
+    <div class="event-module">
+        <img ng-src="img/themes/{{event.type}}-large.jpg" >
+
+        <div class="group-icon-holder">
+            <span class="ion-calendar group-icon calm"></span>
+        </div>
+        <header>
+            <h3 ng-show="event.name">
+                {{event.name}}
+            </h3>
+            <h3 ng-show="!event.name">
+                Event Name
+            </h3>
+            <h5>
+                @{{event.groupName}}
+            </h5>
+        </header>
+    </div>
+    <ion-input class="item item-input item-floating-label">
+        <ion-label>Event Name</ion-label>
+        <input type="text" name="name" placeholder="Type event name here..." ng-model="event.name" ng-minlength="5" ng-maxlength="20" required>
+    </ion-input>
+    <div ng-show="eventForm.$submitted && eventForm.name.$error" ng-messages="eventForm.name.$error">
+        <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+    </div>
+    <ion-input class="item item-input item-floating-label">
+        <ion-label>Description</ion-label>
+        <input type="text" name="description" placeholder="Describe your event here..." ng-model="event.description" ng-minlength="5" ng-maxlength="140" required>
+    </ion-input>
+    <div ng-show="eventForm.$submitted && eventForm.description.$error" ng-messages="eventForm.description.$error">
+        <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+    </div>
+    <ion-input class="item item-input item-floating-label">
+        <ion-label>Location</ion-label>
+        <input type="text" name="location" placeholder="Type event location here..." ng-model="event.location" googleplace="" class="ng-pristine ng-valid" autocomplete="off">
+    </ion-input>
+    <div ng-show="eventForm.$submitted && eventForm.location.$error" ng-messages="eventForm.location.$error">
+        <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+    </div>
+    <ion-input class="item item-input item-floating-label">
+        <ion-label>Date</ion-label>
+        <input type="date" name="date" placeholder="Type event date here..." ng-model="event.date" required>
+    </ion-input>
+    <div ng-show="eventForm.$submitted && eventForm.date.$error" ng-messages="eventForm.date.$error">
+        <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+    </div>
+    <ion-input class="item item-input item-floating-label">
+        <ion-label>Time</ion-label>
+        <input type="time" name="time" placeholder="Type event time here..." ng-model="event.date" required>
+    </ion-input>
+    <div ng-show="eventForm.$submitted && eventForm.date.$error" ng-messages="eventForm.date.$error">
+        <ng-include src="'templates/common/validation-messages.html'"></ng-include>
+    </div>
+
+</div>
+
+
+
+

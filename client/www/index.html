@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+
+      <!-- ng-cordova -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+      <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
+    <!-- ion sticky -->
+    <!-- https://github.com/Poordeveloper/ion-sticky -->
+    <script src="lib/ion-sticky/ion-sticky.js"></script>
+
+    <!-- time picker -->
+    <!-- https://market.ionic.io/plugins/ionictimepicker -->
+    <!-- <script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script> -->
+
+    <!-- date picker -->
+    <!-- https://github.com/rajeshwarpatlolla/ionic-datepicker -->
+    <!-- <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script> -->
+
+    <!-- csshake -->
+    <!-- http://elrumordelaluz.github.io/csshake/ -->
+    <!--
+    <link rel="stylesheet" type="text/css" href="lib/csshake/dist/csshake.min.css">
+    -->
+
+    <!-- angular message -->
+    <!-- https://docs.angularjs.org/api/ngMessages/directive/ngMessages -->
+
+    <script src="lib/angular-messages/angular-messages.js"></script>
+
+
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false"></script>
+
+
+    <!-- angular-moment -->
+    <!-- https://github.com/urish/angular-moment -->
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/angular-moment/angular-moment.js"></script>
+
+
+
+    <script src="lib/js-data/dist/js-data.js"></script>
+    <script src="lib/js-data-angular/dist/js-data-angular.js"></script>
+
+
+    <!-- your app's js -->
+    <script src="js/ya-app.js"></script>
+    <script src="js/ya-controllers.js"></script>
+    <script src="js/ya-services.js"></script>
+    <script src="js/ya-router.js"></script>
+    <script src="js/ya-directives.js"></script>
+
+
+
+      <!-- groups js -->
+    <script src="js/groups/group-controllers.js"></script>
+    <script src="js/groups/group-routers.js"></script>
+    <script src="js/groups/group-services.js"></script>
+
+    <!-- events js -->
+    <script src="js/events/event-controllers.js"></script>
+    <script src="js/events/event-routers.js"></script>
+    <script src="js/events/event-services.js"></script>
+
+
+    <!-- surveys js -->
+    <script src="js/surveys/survey-controllers.js"></script>
+    <script src="js/surveys/survey-routers.js"></script>
+    <script src="js/surveys/survey-services.js"></script>
+
+    <!-- account js -->
+    <script src="js/users/user-services.js"></script>
+    <script src="js/users/user-router.js"></script>
+    <script src="js/users/user-controllers.js"></script>
+
+    <!-- groups js -->
+    <script src="js/notifications/notification-services.js"></script>
+    <script src="js/notifications/notification-router.js"></script>
+    <script src="js/notifications/notification-controllers.js"></script>
+
+
+
+
+  </head>
+  <body ng-app="ya-app">
+    <!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+    <ion-nav-bar class="bar-calm">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

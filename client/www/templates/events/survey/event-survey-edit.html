@@ -1,0 +1,44 @@
+<ion-view title="Survey" hide-back-button="false">
+
+	<ion-nav-buttons side="right">
+	</ion-nav-buttons>
+
+	<ion-content class="has-header">
+		<ion-input class="item item-input item-floating-label">
+			<ion-label>Survey Name</ion-label>
+			<input type="text" name="name" placeholder="Type survey name here..." ng-model="survey.name" ng-minlength="5" ng-maxlength="20" required>
+		</ion-input>
+		<ion-toggle ng-model="survey.suggestionEnabled" toggle-class="toggle-calm">Allow suggestion</ion-toggle>
+		<ion-toggle ng-model="survey.multipleChoices" toggle-class="toggle-calm">Multiple choices</ion-toggle>
+		<a class="item item-icon-left item-icon-right">
+			<i class="icon ion-ios-list-outline"></i>
+			Choices
+			<i class="icon ion-plus" ng-click="createProposal()"></i>
+		</a>
+		<ion-list>
+			<ion-item ng-repeat="proposal in survey.proposals">
+				<h2>{{proposal.name}}</h2>
+				<p>{{proposal.description}}</p>
+				<ion-option-button class="button-assertive"
+								   ng-click="removeProposal(proposal)">
+					Remove
+				</ion-option-button>
+				<ion-option-button class="button-calm"
+								   ng-click="editProposal(proposal)">
+					Edit
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+
+
+	<ion-footer-bar align-title="left" class="bar-calm">
+		<div class="buttons">
+			<a class="button button-clear button-primary"  ui-sref="event({ eventId: event.id })">Cancel</a>
+		</div>
+		<h1 class="title"></h1>
+		<div class="buttons">
+			<button type="button" class="button button-clear button-primary" ng-click="save()"><b>Save</b></button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

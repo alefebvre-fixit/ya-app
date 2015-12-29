@@ -1,0 +1,19 @@
+<ion-view title="Users" hide-back-button="true">
+
+	<ion-nav-buttons side="right">
+		<button class="button button-icon icon ion-more" ng-click="popover.show($event)"></button>
+	</ion-nav-buttons>
+
+	<ion-content class="has-header">
+		<div class="list">
+			<a class="item item-avatar" ng-repeat="user in users"
+			   ui-sref="user({username: user.username})">
+				<img ng-src="img/users/{{user.username}}.jpg">
+				<h2>{{user.profile.name}}</h2>
+				<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
+			</a>
+		</div>
+
+	</ion-content>
+
+</ion-view>

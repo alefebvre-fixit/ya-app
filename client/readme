@@ -1,0 +1,72 @@
+
+//Open Chrome without security
+open -a Google\ Chrome --args --disable-web-security
+
+http://localhost:8100/#/app/signin
+
+
+
+
+//Install homebrew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+//Install NPM
+http://thechangelog.com/install-node-js-with-homebrew-on-os-x/
+
+//To install gulp:
+npm install --global gulp
+
+//To install Saas
+ionic setup sass
+
+
+#ngCordova plugins
+//To add Toast plugin:
+cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+//To add Date picker plugin
+cordova plugin add http://github.com/VitaliiBlagodir/cordova-plugin-datepicker
+//To install OAuth plugin
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+//To install In App browser:
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+
+#Start android in debug mode
+o see the option for USB debugging mode in Nexus 4 or Android 4.2 or higher OS, do the following:
+Open up your device’s “Settings”. This can be done by pressing the Menu button while on your home screen and tapping “System settings”
+Now scroll to the bottom and tap “About phone” or “About tablet”.
+At the “About” screen, scroll to the bottom and tap on “Build number” seven times.
+Make sure you tap seven times. If you see a “Not need, you are already a developer!” message pop up, then you know you have done it correctly.
+
+#ripple effect
+
+
+#Env Variable
+
+
+export MONGODB_HOME=/work/workspace-fixit/mongodb
+export PATH=$MONGODB_HOME/bin:$PATH
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export ANDROID_HOME=/Users/antoine_lefebvre/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+export ANT_HOME=/work/workspace-fixit/apache-ant-1.9.4
+export PATH=$PATH:$ANT_HOME/bin
+
+export SBT_OPTS="-Xms1024M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=4028M"
+
+export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
+
+http://www.colourlovers.com/palette/580974/Adrift_in_Dreams
+
+./activator -jvm-debug 4444 ~run
+
+
+//profile generator
+http://www.designskilz.com/random-users/
+
+//free stock photos
+http://viralsweep.com/blog/free-stock-images-for-commercial-use/
+
+ga0RGNYHvNM5d0SLGQfpQWAPGJ8=

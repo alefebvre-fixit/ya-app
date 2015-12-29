@@ -1,0 +1,13 @@
+
+<a class="item item-thumbnail-left"
+   ui-sref="event({ eventId: event.id })">
+	<img ng-src="img/themes/{{event.type}}-thumbnail.jpg" class="event-thumbnail">
+	<h2>{{::event.name}}</h2>
+	<p>
+        <i class="icon ion-ios-people calm"></i><i> @{{::event.groupName}}</i>
+        <br>
+		<i class="icon ion-calendar calm"></i><i> {{::event.date | date:'shortDate'}}</i>
+		<br>
+		<i class="icon ion-location calm"></i><i>  {{::event.city}}, {{::event.country}}</i>
+	</p>
+</a>

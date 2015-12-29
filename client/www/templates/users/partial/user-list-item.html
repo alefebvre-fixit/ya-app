@@ -1,0 +1,7 @@
+
+<a class="item item-avatar" ng-repeat="user in users | filter:filter"
+   ui-sref="user({username: user.username})">
+	<img ng-src="img/users/{{user.username}}.jpg">
+	<h2>{{user.profile.name}}</h2>
+	<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
+</a>
