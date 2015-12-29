@@ -24,9 +24,7 @@ public class GroupController extends YaController {
 		Logger.info("info GroupController.groups()");
 		Logger.warn("warn GroupController.groups()");
 		Logger.error("error GroupController.groups()");
-		
-		
-		
+				
 		return getGroupService().findAll();
 	}
 
@@ -46,7 +44,7 @@ public class GroupController extends YaController {
 	}
 
 	@RequestMapping(value = "/api/groups/{groupId}/unfollow", method = RequestMethod.POST)
-	public List<String> unfollow(String groupId) {
+	public List<String> unfollow(@PathVariable String groupId) {
 		Logger.debug("GroupController.unfollow groupId =" + groupId);
 
 		getGroupService().unfollow(getUserName(), groupId);
@@ -54,7 +52,7 @@ public class GroupController extends YaController {
 		return getGroupService().findFollowingIds(getUserName());
 	}
 
-	@RequestMapping(value = "/api/user/{username}/groups")
+	@RequestMapping("/api/users/{username}/groups")
 	public List<Group> getUserGroups(@PathVariable String username) {
 		Logger.debug("GroupController.groupByOwner username =" + username);
 
@@ -81,26 +79,26 @@ public class GroupController extends YaController {
 		return getGroupService().findSponsors(groupId);
 	}
 
-	@RequestMapping("/api/user/{username}/groups/followings/id")
-	public List<String> followingIds(String username) {
+	@RequestMapping("/api/users/{username}/groups/following/id")
+	public List<String> followingIds(@PathVariable String username) {
 		Logger.debug("GroupController.followingIds username =" + username);
 		return getGroupService().findFollowingIds(username);
 	}
 
-	@RequestMapping("/api/user/{username}/groups/followings/size")
-	public int followingSize(String username) {
+	@RequestMapping("/api/users/{username}/groups/following/size")
+	public int followingSize(@PathVariable String username) {
 		Logger.debug("GroupController.followingSize username =" + username);
 		return getGroupService().countFollowingSize(username);
 	}
 
-	@RequestMapping("/api/user/{username}/groups/followings")
-	public List<Group> following(String username) {
+	@RequestMapping("/api/users/{username}/groups/following")
+	public List<Group> following(@PathVariable String username) {
 		Logger.debug("GroupController.following username =" + username);
 		return getGroupService().findFollowingGroups(username);
 	}
 
 	@RequestMapping(value = "/api/groups/{groupId}", method = RequestMethod.DELETE)
-	public void deleteGroup(String groupId) {
+	public void deleteGroup(@PathVariable String groupId) {
 
 		Group original = getGroupService().findOne(groupId);
 

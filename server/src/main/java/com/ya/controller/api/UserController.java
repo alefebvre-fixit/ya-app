@@ -91,14 +91,14 @@ public class UserController extends YaController {
 		return getUserService().findFollowing(username);
 	}
 
-	@RequestMapping("/api/users/{username}/following/names")
+	@RequestMapping("/api/users/{username}/following/name")
 	public List<String> followingNames(@PathVariable String username) {
 		Logger.debug("UserAPIController.followingNames username =" + username);
 		return getUserService().findFollowingNames(username);
 	}
 
 	@RequestMapping("/api/users/{username}/following/size")
-	public int followingSize(String username) {
+	public int followingSize(@PathVariable String username) {
 		Logger.debug("UserAPIController.followingSize username =" + username);
 		return getUserService().countFollowing(username);
 	}

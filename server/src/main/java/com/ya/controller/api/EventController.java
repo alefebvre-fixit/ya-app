@@ -30,21 +30,21 @@ public class EventController extends YaController {
 		return getEventService().findAll();
 	}
 
-	@RequestMapping("/api/event/timeline")
+	@RequestMapping("/api/events/timeline")
 	public EventTimeline getEventTimeline() {
 		Logger.debug("EventAPIController.getEventTimeline()");
 		return getEventService().findEventTimeline();
 	}
 
 	@RequestMapping("/api/groups/{groupId}/events/timeline")
-	public EventTimeline getEventTimelineByGroup(String groupId) {
+	public EventTimeline getEventTimelineByGroup(@PathVariable String groupId) {
 		Logger.debug("EventAPIController.getEventTimelineByGroup(groupId) groupId="
 				+ groupId);
 		return getEventService().findEventTimeline(groupId);
 	}
 
 	@RequestMapping("/api/groups/{groupId}/events/new")
-	public Event createNewEvent(String groupId) {
+	public Event createNewEvent(@PathVariable String groupId) {
 		Logger.debug("EventAPIController.createNewEvent() gor groupId"
 				+ groupId);
 		return EventFactory.createEvent(getGroupService().findOne(groupId),
