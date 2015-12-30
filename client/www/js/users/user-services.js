@@ -22,6 +22,9 @@ angular.module('ya-app').factory('UserService', ['$http', '$log', 'YaConfig','Ya
         signinUser: function (signin) {
             return $http.post(YaConfig.url + '/signin/email', signin);
         },
+        signinSpringBootUser: function (signin) {
+            return $http.post(YaConfig.url + '/authenticate', signin);
+        },
         signInGoogle: function (signin) {
             return $http.post(YaConfig.url + '/signin/google', signin);
         },

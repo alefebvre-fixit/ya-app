@@ -69,6 +69,12 @@
 				<button class="button button-block button-calm" ng-click="doSignIn()"><b>Sign In</b></button>
 				<p ng-show="signin.error" class="help-block">{{signin.error}}</p>
 			</ion-input>
+
+			<ion-input class="item item-transparent no-padding">
+				<button class="button button-block button-calm" ng-click="doSpringBootSignIn()"><b>SpringBoot Sign In</b></button>
+				<p ng-show="signin.error" class="help-block">{{signin.error}}</p>
+			</ion-input>
+
 			<a class="button button-block button-clear button-calm" ui-sref="sign-up">Create Free Account</a>
 		</div>
 		<div class="list list-inset list-transparent">

@@ -1,5 +1,6 @@
 package com.ya;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,11 +16,14 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 
 import com.ya.xauth.XAuthTokenConfigurer;
 
-@EnableWebSecurity(debug = false)
+@EnableWebSecurity(debug = true)
 @Configuration
 @Order
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private CustomUserDetailsService userDetailService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -27,28 +31,31 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(
 				SessionCreationPolicy.STATELESS);
 
-		String[] restEndpointsToSecure = { "news" };
+		/*
+		String[] restEndpointsToSecure = { "groups" };
 		for (String endpoint : restEndpointsToSecure) {
-			http.authorizeRequests().antMatchers("/" + endpoint + "/**")
+			http.authorizeRequests().antMatchers("/api/groups")
 					.hasRole(CustomUserDetailsService.ROLE_USER);
 		}
+		*/
+		
+		http.authorizeRequests().antMatchers("/api/groups")
+		.hasRole(CustomUserDetailsService.ROLE_USER);
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(
 				userDetailsServiceBean());
 		http.apply(securityConfigurerAdapter);
 	}
 
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder authManagerBuilder)
 			throws Exception {
-		authManagerBuilder.userDetailsService(new CustomUserDetailsService());
+		authManagerBuilder.userDetailsService(userDetailService);
 	}
+	
 
-	@Bean
-	@Override
-	public UserDetailsService userDetailsServiceBean() throws Exception {
-		return super.userDetailsServiceBean();
-	}
+
 
 	@Bean
 	@Override

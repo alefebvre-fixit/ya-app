@@ -46,6 +46,19 @@ angular.module('ya-app').controller('SignInController', ['YaService', 'UserServi
         };
 
 
+
+        $scope.doSpringBootSignIn = function(){
+            YaService.startLoading();
+            UserService.signinSpringBootUser($scope.signin).success(function (user) {
+                initialize(user);
+            }).error(function (response, status) {
+                YaService.stopLoading();
+                $log.debug("Invalid username or password");
+                $scope.signin.error = 'Invalid username or password';
+            });
+        };
+
+
         // Perform the login action when the user submits the login for
         $scope.doSignIn = function () {
 

@@ -34,7 +34,7 @@ public class UserXAuthTokenController {
 		this.userDetailsService = userDetailsService;
 	}
 
-	@RequestMapping(value = "/authenticate", method = {RequestMethod.POST})
+	@RequestMapping(value = "/api/authenticate", method = {RequestMethod.POST})
 	public UserTransfer authorize(@RequestBody AuthenticationRequest authenticationRequest) {
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
