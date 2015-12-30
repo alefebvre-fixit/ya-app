@@ -9,4 +9,6 @@ public class YaAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(YaAppApplication.class, args);
     }
+
+
 }
