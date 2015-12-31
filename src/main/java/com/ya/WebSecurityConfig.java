@@ -39,9 +39,15 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 		*/
 		
+		/*
 		http.authorizeRequests()
 		.antMatchers("/resources/**", "/signup", "/about", "/api/authenticate").permitAll()
 		.anyRequest().authenticated();
+		*/
+		http.authorizeRequests()
+		.anyRequest().permitAll();
+		
+		
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(
 				userDetailsServiceBean());
