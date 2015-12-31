@@ -21,8 +21,8 @@ angular.module('ya-app').controller('SignUpController', ['YaService', 'UserServi
     }
 ]);
 
-angular.module('ya-app').controller('SignInController', ['YaService', 'UserService', '$scope', '$rootScope', '$log', '$state', 'NotificationService', '$cordovaOauth',
-    function (YaService, UserService, $scope, $rootScope, $log, $state, NotificationService, $cordovaOauth) {
+angular.module('ya-app').controller('SignInController', ['YaService', 'UserService', '$scope', '$rootScope', '$log', '$state', 'NotificationService', '$cordovaOauth', '$http',
+    function (YaService, UserService, $scope, $rootScope, $log, $state, NotificationService, $cordovaOauth, $http) {
 
         $scope.signin = {username: 'antoinelefebvre', password: 'password'};
 
@@ -49,8 +49,12 @@ angular.module('ya-app').controller('SignInController', ['YaService', 'UserServi
 
         $scope.doSpringBootSignIn = function(){
             YaService.startLoading();
-            UserService.signinSpringBootUser($scope.signin).success(function (user) {
-                initialize(user);
+            UserService.signinSpringBootUser($scope.signin).success(function (data) {
+
+                $log.log(data.token);
+                $http.defaults.headers.common['x-auth-token'] = data.token;
+
+                initialize(data.user);
             }).error(function (response, status) {
                 YaService.stopLoading();
                 $log.debug("Invalid username or password");

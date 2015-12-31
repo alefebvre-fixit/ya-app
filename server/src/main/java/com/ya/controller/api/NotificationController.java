@@ -1,5 +1,6 @@
 package com.ya.controller.api;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,12 @@ import com.ya.util.Logger;
 public class NotificationController extends YaController {
 
 	@RequestMapping("/api/notifications")
-	public List<Notification> notifications() {
+	public List<Notification> notifications(Principal principal) {
+		
+		
+		
 		Logger.debug("NotificationAPIController.notifications");
-
+		Logger.debug("Principal principal " + principal.getName());
 		return getNotificationService().findUserNotifications(getUserName(), 0,
 				0);
 	}

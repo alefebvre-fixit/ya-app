@@ -10,7 +10,7 @@ import com.ya.model.user.YaUser;
 import com.ya.service.UserService;
 
 @Component
-public class CustomUserDetailsService implements UserDetailsService {
+public class YaUserDetailsService implements UserDetailsService {
 
 	public static final String ROLE_ADMIN = "ADMIN";
 	public static final String ROLE_USER = "USER";
@@ -26,8 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		YaUser user = userService.findOne(username);
 		if (user != null) {
-			result = new SimpleUserDetails(user.getUsername(),
-					user.getPassword(), ROLE_USER);
+			result = new YaUserDetails(user, user.getPassword(), ROLE_USER);
 		} else {
 			throw new UsernameNotFoundException("Cannot find username "
 					+ username);

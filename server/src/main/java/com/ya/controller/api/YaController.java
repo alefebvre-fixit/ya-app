@@ -1,7 +1,9 @@
 package com.ya.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.ya.YaUserDetails;
 import com.ya.model.user.YaUser;
 import com.ya.service.EventService;
 import com.ya.service.GroupService;
@@ -46,8 +48,8 @@ public class YaController {
 	}
 
 	protected YaUser getUser() {
-		//TODO to be changed - no comment
-		return userService.findOne(getUserName());
+		YaUserDetails user = (YaUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return user.getUser();
 	}
 
 	protected SurveyService getSurveyService() {
@@ -55,7 +57,8 @@ public class YaController {
 	}
 
 	protected static String getUserName() {
-		return "antoinelefebvre";
+		YaUserDetails user = (YaUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return user.getUsername();
 	}
 	
 }

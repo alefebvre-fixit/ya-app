@@ -4,18 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.ya.YaUserDetails;
+import com.ya.model.user.YaUser;
 
 /**
  * This controller generates the token that must be present in subsequent REST
@@ -29,52 +26,43 @@ public class UserXAuthTokenController {
 	private final UserDetailsService userDetailsService;
 
 	@Autowired
-	public UserXAuthTokenController(AuthenticationManager am, UserDetailsService userDetailsService) {
+	public UserXAuthTokenController(AuthenticationManager am,
+			UserDetailsService userDetailsService) {
 		this.authenticationManager = am;
 		this.userDetailsService = userDetailsService;
 	}
 
-	@RequestMapping(value = "/api/authenticate", method = {RequestMethod.POST})
-	public UserTransfer authorize(@RequestBody AuthenticationRequest authenticationRequest) {
+	@RequestMapping(value = "/api/authenticate", method = { RequestMethod.POST })
+	public UserTransfer authorize(
+			@RequestBody AuthenticationRequest authenticationRequest) {
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
 
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-		Authentication authentication = this.authenticationManager.authenticate(token);
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+				username, password);
+		Authentication authentication = this.authenticationManager
+				.authenticate(token);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		UserDetails details = this.userDetailsService.loadUserByUsername(username);
+		YaUserDetails details = (YaUserDetails) this.userDetailsService
+				.loadUserByUsername(username);
 
-		Map<String, Boolean> roles = new HashMap<String, Boolean>();
-		for (GrantedAuthority authority : details.getAuthorities())
-			roles.put(authority.toString(), Boolean.TRUE);
-
-		return new UserTransfer(details.getUsername(), roles, tokenUtils.createToken(details));
+		return new UserTransfer(details.getUser(),
+				tokenUtils.createToken(details));
 	}
 
 	public static class UserTransfer {
 
-		private final String name;
-		private final Map<String, Boolean> roles;
+		private final YaUser user;
 		private final String token;
 
-		public UserTransfer(String userName, Map<String, Boolean> roles, String token) {
-
-			Map<String, Boolean> mapOfRoles = new ConcurrentHashMap<String, Boolean>();
-			for (String k : roles.keySet())
-				mapOfRoles.put(k, roles.get(k));
-
-			this.roles = mapOfRoles;
+		public UserTransfer(YaUser user, String token) {
 			this.token = token;
-			this.name = userName;
+			this.user = user;
 		}
 
-		public String getName() {
-			return this.name;
-		}
-
-		public Map<String, Boolean> getRoles() {
-			return this.roles;
+		public YaUser getUser() {
+			return user;
 		}
 
 		public String getToken() {

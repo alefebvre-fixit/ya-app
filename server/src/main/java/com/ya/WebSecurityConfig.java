@@ -22,7 +22,7 @@ import com.ya.xauth.XAuthTokenConfigurer;
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private CustomUserDetailsService userDetailService;
+	private YaUserDetailsService userDetailService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -39,8 +39,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 		*/
 		
-		http.authorizeRequests().antMatchers("/api/groups")
-		.hasRole(CustomUserDetailsService.ROLE_USER);
+		http.authorizeRequests()
+		.antMatchers("/resources/**", "/signup", "/about", "/api/authenticate").permitAll()
+		.anyRequest().authenticated();
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(
 				userDetailsServiceBean());
