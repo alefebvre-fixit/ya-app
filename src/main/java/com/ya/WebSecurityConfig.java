@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 
 import com.ya.xauth.XAuthTokenConfigurer;
@@ -23,7 +22,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private YaUserDetailsService userDetailService;
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -32,37 +31,29 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				SessionCreationPolicy.STATELESS);
 
 		/*
-		String[] restEndpointsToSecure = { "groups" };
-		for (String endpoint : restEndpointsToSecure) {
-			http.authorizeRequests().antMatchers("/api/groups")
-					.hasRole(CustomUserDetailsService.ROLE_USER);
-		}
-		*/
-		
+		 * String[] restEndpointsToSecure = { "groups" }; for (String endpoint :
+		 * restEndpointsToSecure) {
+		 * http.authorizeRequests().antMatchers("/api/groups")
+		 * .hasRole(CustomUserDetailsService.ROLE_USER); }
+		 */
+
 		/*
-		http.authorizeRequests()
-		.antMatchers("/resources/**", "/signup", "/about", "/api/authenticate").permitAll()
-		.anyRequest().authenticated();
-		*/
-		http.authorizeRequests()
-		.anyRequest().permitAll();
-		
-		
+		 * http.authorizeRequests() .antMatchers("/resources/**", "/signup",
+		 * "/about", "/api/authenticate").permitAll()
+		 * .anyRequest().authenticated();
+		 */
+		http.authorizeRequests().anyRequest().permitAll();
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(
 				userDetailsServiceBean());
 		http.apply(securityConfigurerAdapter);
 	}
 
-	
 	@Override
 	protected void configure(AuthenticationManagerBuilder authManagerBuilder)
 			throws Exception {
 		authManagerBuilder.userDetailsService(userDetailService);
 	}
-	
-
-
 
 	@Bean
 	@Override

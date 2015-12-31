@@ -1,4 +1,4 @@
-package com.ya.xauth;
+package com.ya.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ya.YaUserDetails;
 import com.ya.model.user.YaUser;
+import com.ya.xauth.AuthenticationRequest;
+import com.ya.xauth.TokenUtils;
 
 /**
  * This controller generates the token that must be present in subsequent REST
