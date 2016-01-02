@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
+import com.ya.exception.YaAuthenticationException;
+
 /**
  * Sifts through all incoming requests and installs a Spring Security principal
  * if a header corresponding to a valid user is found.
@@ -47,11 +49,11 @@ public class XAuthTokenFilter extends GenericFilterBean {
 							details, details.getPassword(),
 							details.getAuthorities());
 					SecurityContextHolder.getContext().setAuthentication(token);
-				}
-			}
+				} 
+			} 
 			filterChain.doFilter(arg0, arg1);
 		} catch (Exception ex) {
-			throw new RuntimeException(ex);
+			throw new YaAuthenticationException("Cannot authenticate user", ex);
 		}
 	}
 

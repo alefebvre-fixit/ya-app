@@ -10,7 +10,7 @@ angular.module('ya-app').factory('YaService',
                     var userInfo = getUserInfo();
 
                     if (userInfo && userInfo.token){
-                        installUserInfo(userinfo);
+                        installUserInfo(userInfo);
                         return true;
                     }
                     return false;

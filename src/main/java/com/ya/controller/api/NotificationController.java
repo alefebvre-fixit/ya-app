@@ -58,5 +58,19 @@ public class NotificationController extends YaController {
 
 		getNotificationService().acknowledgeNotifications(getUserName());
 	}
+	
+	@RequestMapping(value = "/api/notifications", method = RequestMethod.DELETE)
+	public void deleteNotifications() {
+		Logger.debug("NotificationAPIController.deleteNotifications");
+
+		getNotificationService().acknowledgeNotifications(getUserName());
+	}
+	
+	@RequestMapping(value = "/api/notifications/{notificationId}", method = RequestMethod.DELETE)
+	public void deleteNotification(@PathVariable String notificationId) {
+		Logger.debug("NotificationAPIController.deleteNotification notificationId=" + notificationId);
+
+		getNotificationService().acknowledgeNotification(notificationId);
+	}
 
 }

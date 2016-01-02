@@ -30,19 +30,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(
 				SessionCreationPolicy.STATELESS);
 
-		/*
-		 * String[] restEndpointsToSecure = { "groups" }; for (String endpoint :
-		 * restEndpointsToSecure) {
-		 * http.authorizeRequests().antMatchers("/api/groups")
-		 * .hasRole(CustomUserDetailsService.ROLE_USER); }
-		 */
 
 		http.authorizeRequests()
 				.antMatchers("/resources/**", "/signup", "/about",
 						"/api/authenticate").permitAll().anyRequest()
 				.authenticated();
-
-		http.authorizeRequests().anyRequest().permitAll();
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(
 				userDetailsServiceBean());

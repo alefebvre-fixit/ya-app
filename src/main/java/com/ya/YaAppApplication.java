@@ -16,7 +16,7 @@ public class YaAppApplication {
         SpringApplication.run(YaAppApplication.class, args);
     }
 
-
+    /*
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
@@ -26,5 +26,6 @@ public class YaAppApplication {
             }
         };
     }
+    */
     
 }
