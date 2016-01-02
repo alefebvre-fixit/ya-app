@@ -1,8 +1,5 @@
 package com.ya.controller.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,76 +10,25 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.types.User;
+import com.ya.exception.YaAuthenticationException;
 import com.ya.model.user.SignUp;
 import com.ya.model.user.YaUser;
 import com.ya.model.user.impl.FacebookSignIn;
 import com.ya.model.user.impl.FacebookSignUp;
+import com.ya.security.YaUserInfo;
 import com.ya.util.Logger;
 import com.ya.util.YaUtil;
 
 @RestController
-public class LoginController extends YaController {
-
-	@RequestMapping(value = "/api/signup", method = RequestMethod.POST)
-	public YaUser signUp(@RequestBody SignUp signup) {
-		Logger.debug("UserAPIController.signup()");
-
-		YaUser user = null;
-		List<String> messages = validate(signup);
-
-		if (messages.size() == 0) {
-			// session().clear();
-			user = getUserService().signup(signup);
-			// session(SESSION_ATTRIBUTE_USERNAME, user.getUsername());
-		}
-
-		return user;
-	}
-
-	/*
-	@RequestMapping(value = "/api/signin/email", method = RequestMethod.POST)
-	public YaUser signIn(@RequestBody EmailSignIn signin) {
-
-		Logger.debug("UserAPIController.signIn()");
-		YaUser user = getUserService().authenticate(signin);
-
-		// if (user == null) {
-		// return forbidden("Invalid password");
-		// }
-
-		// session().clear();
-		// session(SESSION_ATTRIBUTE_USERNAME, user.getUsername());
-
-		return user;
-	}
-	*/
-
-	@RequestMapping(value = "/api/signin/google", method = RequestMethod.POST)
-	public YaUser googleSignIn() {
-
-		Logger.debug("UserAPIController.googleSignIn()");
-
-		// SignIn signin = Json.fromJson(body.asJson(), SignIn.class);
-		/*
-		 * User user = getUserService().authenticate(signin);
-		 * 
-		 * if (user == null) { return forbidden("Invalid password"); }
-		 * session().clear(); session(SESSION_ATTRIBUTE_USERNAME,
-		 * user.getUsername());
-		 */
-
-		return null;
-
-	}
+public class FacebookSignInController extends SignInController {
 
 	String APP_SECRET = "07682c1ea374c2ca6eaa6fcff5ebb589";
 
 	@RequestMapping(value = "/api/signin/facebook", method = RequestMethod.POST)
-	public YaUser facebookSignIn(@RequestBody FacebookSignIn signin) {
+	public YaUserInfo signIn(@RequestBody FacebookSignIn signin) {
 		Logger.debug("UserAPIController.facebookSignIn()");
 
 		YaUser user = null;
-
 		Logger.debug("UserAPIController.facebookSignIn(String token) token="
 				+ signin.getToken());
 		FacebookClient facebookClient = new DefaultFacebookClient(
@@ -114,28 +60,15 @@ public class LoginController extends YaController {
 
 		if (user == null) {
 			Logger.debug("UserAPIController.facebookSignIn() cannot identify user=");
-			// session().clear();
-			// return forbidden("Invalid password");
+			throw new YaAuthenticationException(
+					"UserAPIController.facebookSignIn() cannot identify user");
 		}
 		// TODO To be implemented
 		// ession().clear();
 		// session(SESSION_ATTRIBUTE_USERNAME, user.getUsername());
 		// session(SESSION_ATTRIBUTE_ACCESS_TOKEN, signin.getToken());
 
-		return user;
-	}
-
-	// TODO use bean validation
-	public List<String> validate(SignUp signup) {
-		List<String> result = new ArrayList<String>();
-
-		YaUser user = getUserService().findOne(signup.getUsername());
-		if (user != null) {
-			Logger.debug("UserAPIController.validate() : User already exist");
-			result.add("User already exist");
-		}
-
-		return result;
+		return createYaUserInfo(user);
 	}
 
 }

@@ -1,12 +1,12 @@
 package com.ya.model.user;
 
-import org.springframework.beans.factory.annotation.Required;
-
 public abstract class SignUp {
 
 	private String username;
 
 	private String email;
+
+	private String password;
 
 	private Profile profile = new Profile();
 
@@ -32,6 +32,14 @@ public abstract class SignUp {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

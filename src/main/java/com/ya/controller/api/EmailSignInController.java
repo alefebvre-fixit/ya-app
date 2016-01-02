@@ -1,5 +1,8 @@
 package com.ya.controller.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ya.YaUserDetails;
+import com.ya.model.user.SignUp;
+import com.ya.model.user.YaUser;
 import com.ya.model.user.impl.EmailSignIn;
-import com.ya.security.TokenUtils;
 import com.ya.security.YaUserInfo;
+import com.ya.util.Logger;
 
 /**
  * This controller generates the token that must be present in subsequent REST
  * invocations.
  */
 @RestController
-public class EmailSignInController extends YaController {
+public class EmailSignInController extends SignInController {
 
 	private final AuthenticationManager authenticationManager;
 	private final UserDetailsService userDetailsService;
@@ -34,7 +39,7 @@ public class EmailSignInController extends YaController {
 	}
 
 	@RequestMapping(value = "/api/signin/email", method = { RequestMethod.POST })
-	public YaUserInfo authorize(@RequestBody EmailSignIn authenticationRequest) {
+	public YaUserInfo signin(@RequestBody EmailSignIn authenticationRequest) {
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
 
@@ -47,17 +52,40 @@ public class EmailSignInController extends YaController {
 		YaUserDetails details = (YaUserDetails) this.userDetailsService
 				.loadUserByUsername(username);
 
-		return createYaUserInfo(details);
+		return createYaUserInfo(details.getUser());
 	}
 
-	private YaUserInfo createYaUserInfo(YaUserDetails details) {
-		YaUserInfo result = new YaUserInfo(details.getUser(),
-				TokenUtils.createToken(details));
+	@RequestMapping(value = "/api/signup", method = RequestMethod.POST)
+	public YaUserInfo signUp(@RequestBody SignUp signup) {
+		Logger.debug("UserAPIController.signup()");
 
-		result.setFollowingUsers(getUserService().findFollowingNames(
-				details.getUsername()));
-		result.setFollowingGroups(getGroupService().findFollowingIds(
-				details.getUsername()));
+		YaUserInfo result = null;
+		List<String> messages = validate(signup);
+
+		if (messages.size() == 0) {
+			getUserService().signup(signup);
+
+			EmailSignIn signin = new EmailSignIn();
+			signin.setUsername(signup.getUsername());
+			signin.setPassword(signup.getPassword());
+			result = signin(signin);
+
+		}
+
+		// TODO Handle validation and errors
+
+		return result;
+	}
+
+	// TODO use bean validation
+	public List<String> validate(SignUp signup) {
+		List<String> result = new ArrayList<String>();
+
+		YaUser user = getUserService().findOne(signup.getUsername());
+		if (user != null) {
+			Logger.debug("UserAPIController.validate() : User already exist");
+			result.add("User already exist");
+		}
 
 		return result;
 	}

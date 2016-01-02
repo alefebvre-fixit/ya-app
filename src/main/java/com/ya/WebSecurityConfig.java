@@ -32,8 +32,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 		http.authorizeRequests()
-				.antMatchers("/resources/**", "/signup", "/about",
-						"/api/authenticate").permitAll().anyRequest()
+				.antMatchers("/resources/**", "/signup", "/about", "/api/signin/email", "/api/signin/facebook").permitAll().anyRequest()
 				.authenticated();
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(

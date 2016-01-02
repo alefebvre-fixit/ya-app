@@ -48,20 +48,6 @@ angular.module('ya-app').controller('SignInController', ['YaService', 'UserServi
             });
         };
 
-        // Perform the login action when the user submits the login for
-        /*
-        $scope.doSignIn = function () {
-
-            YaService.startLoading();
-            UserService.signinUser($scope.signin).success(function (user) {
-                initialize(user);
-            }).error(function (response, status) {
-                YaService.stopLoading();
-                $log.debug("Invalid username or password");
-                $scope.signin.error = 'Invalid username or password';
-            });
-        };
-        */
 
         $scope.goToSignUp = function () {
             $state.go('sign-up');
@@ -97,28 +83,26 @@ angular.module('ya-app').controller('SignInController', ['YaService', 'UserServi
 
             if (UserService.getAccessToken()){
                 var signin = {token: UserService.getAccessToken(), expiration: ''};
-                UserService.signInFacebook(signin).success(function (user) {
-                    initialize(user);
+                UserService.signInFacebook(signin).success(function (userInfo) {
+                    YaService.installUserInfo(userInfo);
+                    initialize(userInfo.user);
                 }).error(function (response, status) {
                     YaService.stopLoading();
                     $log.debug("Invalid username or password");
                     $scope.signin.error = 'Invalid username or password';
                 });
-
-
             } else {
                 $cordovaOauth.facebook("1489020631407250", ["email", "public_profile"]).then(function(result) {
                     var signin = {token: result.access_token, expiration: result.expires_in};
 
-                    UserService.signInFacebook(signin).success(function (user) {
-                        initialize(user);
+                    UserService.signInFacebook(signin).success(function(userInfo) {
+                        YaService.installUserInfo(userInfo);
+                        initialize(userInfo.user);
                     }).error(function (response, status) {
                         YaService.stopLoading();
                         $log.debug("Invalid username or password");
                         $scope.signin.error = 'Invalid username or password';
                     });
-
-
                 }, function(error) {
                     YaService.stopLoading();
                     $rootScope.logindata = error;
