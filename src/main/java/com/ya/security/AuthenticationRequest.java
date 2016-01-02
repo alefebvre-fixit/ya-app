@@ -1,4 +1,4 @@
-package com.ya.xauth;
+package com.ya.security;
 
 public class AuthenticationRequest {
 

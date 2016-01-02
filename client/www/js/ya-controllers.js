@@ -6,7 +6,7 @@ angular.module('ya-app').controller('YaController', ['$scope', '$log', '$rootSco
 
 		$scope.signout = function(){
 			closePopover();
-			$scope.setUser(null);
+            YaService.signOut();
             $state.go('sign-in');
 		};
 
@@ -36,11 +36,6 @@ angular.module('ya-app').controller('YaController', ['$scope', '$log', '$rootSco
         $scope.$on('$destroy', function() {
             $scope.popover.remove();
         });
-
-        $scope.setUser = function(user){
-			YaService.setUser(user);
-		}
-
 
 }
 ]);

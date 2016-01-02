@@ -2,9 +2,9 @@
     <ion-content>
         <div class="list">
             <a class="item item-avatar" ng-click="goToUser()">
-                <img ng-src="img/users/{{user.username}}.jpg" class="sponsor-avatar owner-avatar">
-                <h2>{{user.profile.name}}</h2>
-                <p>{{user.username}}</p>
+                <img ng-src="img/users/{{userInfo.user.username}}.jpg" class="sponsor-avatar owner-avatar">
+                <h2>{{userInfo.user.profile.name}}</h2>
+                <p>{{userInfo.user.username}}</p>
             </a>
             <a class="item" ng-click="signout()">
                 Sign-out

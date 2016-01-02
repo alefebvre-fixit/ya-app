@@ -5,6 +5,7 @@ import java.util.List;
 import com.ya.model.user.SignIn;
 import com.ya.model.user.SignUp;
 import com.ya.model.user.YaUser;
+import com.ya.security.YaUserInfo;
 
 public interface UserService {
 
@@ -45,5 +46,6 @@ public interface UserService {
 	public List<String> findFollowingNames(String username);
 
 	public int countFollowing(String username);
-
+	
+	
 }

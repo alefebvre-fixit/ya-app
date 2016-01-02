@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 
-import com.ya.xauth.XAuthTokenConfigurer;
+import com.ya.security.XAuthTokenConfigurer;
 
 @EnableWebSecurity(debug = true)
 @Configuration
@@ -37,11 +37,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .hasRole(CustomUserDetailsService.ROLE_USER); }
 		 */
 
-		/*
-		 * http.authorizeRequests() .antMatchers("/resources/**", "/signup",
-		 * "/about", "/api/authenticate").permitAll()
-		 * .anyRequest().authenticated();
-		 */
+		http.authorizeRequests()
+				.antMatchers("/resources/**", "/signup", "/about",
+						"/api/authenticate").permitAll().anyRequest()
+				.authenticated();
+
 		http.authorizeRequests().anyRequest().permitAll();
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(

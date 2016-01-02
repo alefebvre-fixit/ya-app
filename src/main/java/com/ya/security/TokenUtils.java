@@ -1,4 +1,4 @@
-package com.ya.xauth;
+package com.ya.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.codec.Hex;
@@ -10,12 +10,12 @@ public class TokenUtils {
 
     public static final String MAGIC_KEY = "obfuscate";
 
-    public String createToken(UserDetails userDetails) {
+    public static String createToken(UserDetails userDetails) {
         long expires = System.currentTimeMillis() + 1000L * 60 * 60;
         return userDetails.getUsername() + ":" + expires + ":" + computeSignature(userDetails, expires);
     }
 
-    public String computeSignature(UserDetails userDetails, long expires) {
+    public static String computeSignature(UserDetails userDetails, long expires) {
         StringBuilder signatureBuilder = new StringBuilder();
         signatureBuilder.append(userDetails.getUsername()).append(":");
         signatureBuilder.append(expires).append(":");
@@ -31,7 +31,7 @@ public class TokenUtils {
         return new String(Hex.encode(digest.digest(signatureBuilder.toString().getBytes())));
     }
 
-    public String getUserNameFromToken(String authToken) {
+    public static String getUserNameFromToken(String authToken) {
         if (null == authToken) {
             return null;
         }
@@ -39,7 +39,7 @@ public class TokenUtils {
         return parts[0];
     }
 
-    public boolean validateToken(String authToken, UserDetails userDetails) {
+    public static boolean validateToken(String authToken, UserDetails userDetails) {
         String[] parts = authToken.split(":");
         long expires = Long.parseLong(parts[1]);
         String signature = parts[2];

@@ -15,7 +15,6 @@ import com.restfb.Version;
 import com.restfb.types.User;
 import com.ya.model.user.SignUp;
 import com.ya.model.user.YaUser;
-import com.ya.model.user.impl.EmailSignIn;
 import com.ya.model.user.impl.FacebookSignIn;
 import com.ya.model.user.impl.FacebookSignUp;
 import com.ya.util.Logger;
@@ -40,6 +39,7 @@ public class LoginController extends YaController {
 		return user;
 	}
 
+	/*
 	@RequestMapping(value = "/api/signin/email", method = RequestMethod.POST)
 	public YaUser signIn(@RequestBody EmailSignIn signin) {
 
@@ -55,6 +55,7 @@ public class LoginController extends YaController {
 
 		return user;
 	}
+	*/
 
 	@RequestMapping(value = "/api/signin/google", method = RequestMethod.POST)
 	public YaUser googleSignIn() {

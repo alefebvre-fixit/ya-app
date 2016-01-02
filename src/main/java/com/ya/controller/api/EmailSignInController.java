@@ -12,31 +12,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ya.YaUserDetails;
-import com.ya.model.user.YaUser;
-import com.ya.xauth.AuthenticationRequest;
-import com.ya.xauth.TokenUtils;
+import com.ya.model.user.impl.EmailSignIn;
+import com.ya.security.TokenUtils;
+import com.ya.security.YaUserInfo;
 
 /**
  * This controller generates the token that must be present in subsequent REST
  * invocations.
  */
 @RestController
-public class UserXAuthTokenController {
+public class EmailSignInController extends YaController {
 
-	private final TokenUtils tokenUtils = new TokenUtils();
 	private final AuthenticationManager authenticationManager;
 	private final UserDetailsService userDetailsService;
 
 	@Autowired
-	public UserXAuthTokenController(AuthenticationManager am,
+	public EmailSignInController(AuthenticationManager am,
 			UserDetailsService userDetailsService) {
 		this.authenticationManager = am;
 		this.userDetailsService = userDetailsService;
 	}
 
-	@RequestMapping(value = "/api/authenticate", method = { RequestMethod.POST })
-	public UserTransfer authorize(
-			@RequestBody AuthenticationRequest authenticationRequest) {
+	@RequestMapping(value = "/api/signin/email", method = { RequestMethod.POST })
+	public YaUserInfo authorize(@RequestBody EmailSignIn authenticationRequest) {
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
 
@@ -49,26 +47,19 @@ public class UserXAuthTokenController {
 		YaUserDetails details = (YaUserDetails) this.userDetailsService
 				.loadUserByUsername(username);
 
-		return new UserTransfer(details.getUser(),
-				tokenUtils.createToken(details));
+		return createYaUserInfo(details);
 	}
 
-	public static class UserTransfer {
+	private YaUserInfo createYaUserInfo(YaUserDetails details) {
+		YaUserInfo result = new YaUserInfo(details.getUser(),
+				TokenUtils.createToken(details));
 
-		private final YaUser user;
-		private final String token;
+		result.setFollowingUsers(getUserService().findFollowingNames(
+				details.getUsername()));
+		result.setFollowingGroups(getGroupService().findFollowingIds(
+				details.getUsername()));
 
-		public UserTransfer(YaUser user, String token) {
-			this.token = token;
-			this.user = user;
-		}
-
-		public YaUser getUser() {
-			return user;
-		}
-
-		public String getToken() {
-			return this.token;
-		}
+		return result;
 	}
+
 }

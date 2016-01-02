@@ -20,16 +20,16 @@ angular.module('ya-app').factory('UserService', ['$http', '$log', 'YaConfig','Ya
             return $http.post(YaConfig.url + '/signup', signup);
         },
         signinUser: function (signin) {
-            return $http.post(YaConfig.url + '/signin/email', signin);
-        },
-        signinSpringBootUser: function (signin) {
-            return $http.post(YaConfig.url + '/authenticate', signin);
+            return $http.post(YaConfig.url + '/signin', signin);
         },
         signInGoogle: function (signin) {
             return $http.post(YaConfig.url + '/signin/google', signin);
         },
         signInFacebook: function (signin) {
             return $http.post(YaConfig.url + '/signin/facebook', signin);
+        },
+        signInEmail: function (signin) {
+            return $http.post(YaConfig.url + '/signin/email', signin);
         },
         follow: function (username) {
             return $http.post(YaConfig.url + '/users/'+ username +'/follow').then(function (response) {
