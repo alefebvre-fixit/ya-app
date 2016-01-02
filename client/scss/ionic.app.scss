@@ -45,6 +45,10 @@ $palette-2:                        #7FC7AF !default;
 $palette-3:                        #DAD8A7 !default;
 $palette-4:                        #FF9E9D !default;
 $palette-5:                        #FF3D7F !default;
+$facebook:                         #3B5998 !default;
+
+.facebook, a.calm {
+  color: $facebook; }
 
 .palette-1{
   color: $palette-1;

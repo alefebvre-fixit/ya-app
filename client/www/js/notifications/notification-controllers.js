@@ -40,7 +40,7 @@ angular.module('ya-app').controller('NotificationListController',
 				YaService.startLoading();
 				NotificationService.acknowledgeNotifications().then(function (data) {
 					$scope.notifications = [];
-					$rootScope.badgecount = Object.keys($scope.notifications).length-1;;
+					$rootScope.badgecount = 0;
 					YaService.stopLoading();
 				});
 			};

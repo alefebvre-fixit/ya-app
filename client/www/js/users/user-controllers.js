@@ -77,8 +77,6 @@ angular.module('ya-app').controller('SignInController', ['YaService', 'UserServi
 
         $scope.facebookLogin = function() {
 
-
-
             YaService.startLoading();
 
             if (UserService.getAccessToken()){
