@@ -2,7 +2,7 @@
     <ion-content>
         <div class="list">
             <a class="item item-avatar" ng-click="goToUser()">
-                <img ng-src="img/users/{{userInfo.user.username}}.jpg" class="sponsor-avatar owner-avatar">
+                <img ng-src="{{userInfo.user.profile.picture.url}}" class="sponsor-avatar owner-avatar">
                 <h2>{{userInfo.user.profile.name}}</h2>
                 <p>{{userInfo.user.username}}</p>
             </a>
@@ -11,6 +11,9 @@
             </a>
             <a class="item" ng-click="test()">
                 Test
+            </a>
+            <a class="item" ng-click="sanitize()">
+                Sanitize
             </a>
         </div>
     </ion-content>

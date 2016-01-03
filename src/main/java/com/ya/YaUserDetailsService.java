@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.ya.model.user.Credential;
 import com.ya.model.user.YaUser;
 import com.ya.service.UserService;
 
@@ -25,8 +26,11 @@ public class YaUserDetailsService implements UserDetailsService {
 		UserDetails result = null;
 
 		YaUser user = userService.findOne(username);
+		Credential credential = userService.findCredential(username);
+		
+		
 		if (user != null) {
-			result = new YaUserDetails(user, user.getPassword(), ROLE_USER);
+			result = new YaUserDetails(user, credential.getPassword(), ROLE_USER);
 		} else {
 			throw new UsernameNotFoundException("Cannot find username "
 					+ username);

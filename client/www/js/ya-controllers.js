@@ -37,6 +37,10 @@ angular.module('ya-app').controller('YaController', ['$scope', '$log', '$rootSco
             $scope.popover.remove();
         });
 
+        $scope.sanitize = function(){
+            closePopover();
+            YaService.sanitize();
+        }
 }
 ]);
 

@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ya.dao.CredentialRepository;
 import com.ya.dao.FollowingRepository;
 import com.ya.dao.UserRepository;
+import com.ya.model.user.Credential;
 import com.ya.model.user.Following;
 import com.ya.model.user.SignIn;
 import com.ya.model.user.SignUp;
@@ -25,6 +27,9 @@ public class MongoUserService implements UserService {
 
 	@Autowired
 	private FollowingRepository followingRepository;
+	
+	@Autowired
+	private CredentialRepository credentialRepository;
 
 	@Override
 	public YaUser findOne(String username) {
@@ -285,6 +290,16 @@ public class MongoUserService implements UserService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public Credential findCredential(String username) {
+		return credentialRepository.findOne(username);
+	}
+
+	@Override
+	public Credential save(Credential credential) {
+		return credentialRepository.save(credential);
 	}
 
 }

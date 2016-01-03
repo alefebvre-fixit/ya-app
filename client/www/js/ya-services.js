@@ -3,6 +3,24 @@ angular.module('ya-app').factory('YaService',
         function($rootScope, $log, $cordovaToast, $ionicLoading, YaConfig, $http) {
             var resultService;
 
+            var startLoading =  function(){
+                $ionicLoading.show({
+                    template: '<ion-spinner class="spinner-calm"></ion-spinner>'
+                });
+            };
+
+            var stopLoading =  function(){
+                $ionicLoading.hide();
+            };
+
+            var sanitize = function(){
+                startLoading();
+                return $http.get(YaConfig.url + '/admin/user/sanitize').then(function (response) {
+                    stopLoading();
+                    return response.data;
+                });
+            };
+
             var isAuthenticated = function(){
                 if ($rootScope.userInfo != null){
                     return true;
@@ -92,17 +110,12 @@ angular.module('ya-app').factory('YaService',
                         $log.debug('$cordovaToast will show:' + message);
                     }
                 },
-                startLoading: function(){
-                    $ionicLoading.show({
-                        template: '<ion-spinner class="spinner-calm"></ion-spinner>'
-                    });
-                },
-                stopLoading: function(){
-                    $ionicLoading.hide();
-                },
+                startLoading: startLoading,
+                stopLoading: stopLoading,
                 installUserInfo: installUserInfo,
                 setFavorites: setFavorites,
                 setFollowing: setFollowing,
+                sanitize: sanitize,
                 isFavorite: function(group){
                     if (group){
                         $log.debug("isFavorite " + group.id);

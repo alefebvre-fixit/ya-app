@@ -2,10 +2,10 @@ package com.ya.service;
 
 import java.util.List;
 
+import com.ya.model.user.Credential;
 import com.ya.model.user.SignIn;
 import com.ya.model.user.SignUp;
 import com.ya.model.user.YaUser;
-import com.ya.security.YaUserInfo;
 
 public interface UserService {
 
@@ -47,5 +47,9 @@ public interface UserService {
 
 	public int countFollowing(String username);
 	
+	public Credential findCredential(String username);
+
+	public Credential save(Credential credential);
+
 	
 }

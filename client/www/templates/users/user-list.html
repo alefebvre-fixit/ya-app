@@ -6,12 +6,9 @@
 
 	<ion-content class="has-header">
 		<div class="list">
-			<a class="item item-avatar" ng-repeat="user in users"
-			   ui-sref="user({username: user.username})">
-				<img ng-src="img/users/{{user.username}}.jpg">
-				<h2>{{user.profile.name}}</h2>
-				<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
-			</a>
+			<div class="list">
+				<div ng-include data-src="'templates/users/partial/user-list-item.html'"></div>
+			</div>
 		</div>
 
 	</ion-content>
