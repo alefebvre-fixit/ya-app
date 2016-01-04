@@ -14,7 +14,10 @@ import com.ya.model.user.Following;
 import com.ya.model.user.SignIn;
 import com.ya.model.user.SignUp;
 import com.ya.model.user.YaUser;
+import com.ya.model.user.YaUserFactory;
 import com.ya.model.user.impl.EmailSignIn;
+import com.ya.model.user.impl.EmailSignUp;
+import com.ya.model.user.impl.FacebookSignUp;
 import com.ya.service.UserService;
 import com.ya.util.Logger;
 import com.ya.util.YaUtil;
@@ -90,7 +93,29 @@ public class MongoUserService implements UserService {
 
 	@Override
 	public YaUser signup(SignUp signup) {
-		return save(YaUser.create(signup));
+
+		if (signup instanceof EmailSignUp) {
+			return signup((EmailSignUp) signup);
+		} else if (signup instanceof FacebookSignUp) {
+			return signup((FacebookSignUp) signup);
+		} else {
+			Logger.debug("Invalid signup =" + signup);
+			return null;
+		}
+
+	}
+
+	private YaUser signup(EmailSignUp signup) {
+		YaUser result = YaUserFactory.create(signup);
+		Credential credential = new Credential(signup.getUsername(),
+				signup.getPassword());
+		save(credential);
+		return save(result);
+	}
+
+	private YaUser signup(FacebookSignUp signup) {
+		YaUser result = YaUserFactory.create(signup);
+		return save(result);
 	}
 
 	@Override

@@ -11,7 +11,8 @@ public class YaUser {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + "]";
+		return "User [id=" + id + ", username=" + username + ", email=" + email
+				+ "]";
 	}
 
 	@Id
@@ -30,6 +31,8 @@ public class YaUser {
 	private String email;
 
 	private String facebookId;
+
+	private String gravatarId;
 
 	public String getUsername() {
 		return username;
@@ -52,26 +55,7 @@ public class YaUser {
 	public YaUser() {
 	}
 
-	public static YaUser create(SignUp signup) {
-		if (signup instanceof EmailSignUp) {
-			return new YaUser((EmailSignUp) signup);
-		} else if (signup instanceof FacebookSignUp) {
-			return new YaUser((FacebookSignUp) signup);
-		}
-		return null;
-	}
 
-	public YaUser(EmailSignUp signup) {
-		this.email = signup.getEmail();
-		this.username = signup.getUsername();
-		this.profile.setName(signup.getProfile().getName());
-	}
-
-	public YaUser(FacebookSignUp signup) {
-		this.email = signup.getEmail();
-		this.username = signup.getUsername();
-		this.profile = signup.getProfile();
-	}
 
 	public YaUser(String email) {
 		this.email = email;
@@ -91,6 +75,14 @@ public class YaUser {
 
 	public void setFacebookId(String facebookId) {
 		this.facebookId = facebookId;
+	}
+
+	public String getGravatarId() {
+		return gravatarId;
+	}
+
+	public void setGravatarId(String gravatarId) {
+		this.gravatarId = gravatarId;
 	}
 
 }

@@ -8,7 +8,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('ya-app', ['ionic', 'ngMessages', 'ngCordova', 'angularMoment', 'ion-sticky', 'js-data'])
+angular.module('ya-app', ['ionic', 'ngMessages', 'ngCordova', 'angularMoment', 'ion-sticky', 'js-data', 'ngLetterAvatar'])
 
 .run(function($ionicPlatform, $rootScope, $state, YaService) {
   $ionicPlatform.ready(function() {

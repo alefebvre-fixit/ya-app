@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ya.controller.api.YaController;
-import com.ya.model.user.Credential;
 import com.ya.model.user.YaUser;
+import com.ya.model.user.YaUserFactory;
 import com.ya.util.Logger;
 import com.ya.util.YaUtil;
 
@@ -36,6 +36,16 @@ public class AdminController extends YaController {
 						.setUrl("https://graph.facebook.com/"
 								+ user.getFacebookId() + "/picture");
 			}
+
+			Logger.debug("Sanitize user " + user.getUsername()
+					+ " gravatarId:" + user.getGravatarId());
+			
+			if (YaUtil.isEmpty(user.getGravatarId())) {
+				user.setGravatarId(YaUserFactory.computeGravatarId(user));
+				Logger.debug("Sanitize user " + user.getUsername()
+						+ " with following gravatarId:" + user.getGravatarId());
+			}
+
 			Logger.debug("Sanitize user " + user.getUsername()
 					+ " with following picture:"
 					+ user.getProfile().getPicture().getUrl());
@@ -43,29 +53,23 @@ public class AdminController extends YaController {
 		}
 	}
 
-	
 	private void sanitizeCredential() {
 		Logger.debug("Start sanitize credentials");
 
 		/*
-		List<YaUser> users = getUserService().findAll();
-		for (YaUser user : users) {
-
-			Credential credential = getUserService().findCredential(
-					user.getUsername());
-			if (credential == null) {
-				credential = new Credential(user.getUsername(),
-						user.getPassword());
-				getUserService().save(credential);
-				Logger.debug("Sanitize user " + user.getUsername()
-						+ " with following credentials:" + credential);
-			} else {
-				Logger.debug("User user " + user.getUsername()
-						+ " already has proper credentials:" + credential);
-			}
-
-		}
-		*/
+		 * List<YaUser> users = getUserService().findAll(); for (YaUser user :
+		 * users) {
+		 * 
+		 * Credential credential = getUserService().findCredential(
+		 * user.getUsername()); if (credential == null) { credential = new
+		 * Credential(user.getUsername(), user.getPassword());
+		 * getUserService().save(credential); Logger.debug("Sanitize user " +
+		 * user.getUsername() + " with following credentials:" + credential); }
+		 * else { Logger.debug("User user " + user.getUsername() +
+		 * " already has proper credentials:" + credential); }
+		 * 
+		 * }
+		 */
 
 	}
 

@@ -9,7 +9,8 @@
     "ion-sticky": "~1.0.3",
     "ngCordova": "~0.1.23-alpha",
     "js-data": "~2.8.2",
-    "js-data-angular": "~3.1.0"
+    "js-data-angular": "~3.1.0",
+    "ng-letter-avatar": "ngletteravatar#~4.0.0"
   },
   "resolutions": {
     "angular": "1.4.8"

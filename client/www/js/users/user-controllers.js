@@ -209,7 +209,6 @@ angular.module('ya-app').controller('UserController', ['YaService', '$scope', '$
         $scope.summary = {groupSize : '-', followingSize : '-', followerSize : '-', user: {}, followingGroups : []};
 
         var reload = function(username){
-
             UserService.getUser(username).then(function (summary) {
                 $scope.summary.user = summary;
             });

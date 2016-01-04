@@ -52,10 +52,10 @@
 
     <ion-content class="has-header">
         <div class="account">
-            <img ng-src="img/users/{{::summary.user.username}}-100.jpg" class="avatar" width="100">
+            <ya-avatar avatar="summary.user" size="100"></ya-avatar>
             <header>
                 <h3>
-                    {{summary.user.profile.name}}
+                    {{summary.user.profile.name}} {{summary.user.facebookId}}
                 </h3>
                 <h5>
                     @{{summary.user.username}}
