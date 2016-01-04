@@ -7,7 +7,8 @@ import com.ya.security.YaUserInfo;
 public abstract class SignInController extends YaController {
 
 	protected YaUserInfo createYaUserInfo(YaUser user) {
-		YaUserInfo result = new YaUserInfo(user, TokenUtils.createToken(user));
+		YaUserInfo result = new YaUserInfo(user, TokenUtils.createToken(user
+				.getUsername()));
 
 		result.setFollowingUsers(getUserService().findFollowingNames(
 				user.getUsername()));

@@ -8,13 +8,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ya.YaUserDetails;
 import com.ya.model.user.SignUp;
 import com.ya.model.user.YaUser;
 import com.ya.model.user.impl.EmailSignIn;
@@ -29,17 +27,17 @@ import com.ya.util.Logger;
 public class EmailSignInController extends SignInController {
 
 	private final AuthenticationManager authenticationManager;
-	private final UserDetailsService userDetailsService;
 
 	@Autowired
-	public EmailSignInController(AuthenticationManager am,
-			UserDetailsService userDetailsService) {
+	public EmailSignInController(AuthenticationManager am) {
 		this.authenticationManager = am;
-		this.userDetailsService = userDetailsService;
 	}
 
 	@RequestMapping(value = "/api/signin/email", method = { RequestMethod.POST })
 	public YaUserInfo signin(@RequestBody EmailSignIn authenticationRequest) {
+
+		YaUserInfo result = null;
+
 		String username = authenticationRequest.getUsername();
 		String password = authenticationRequest.getPassword();
 
@@ -49,10 +47,15 @@ public class EmailSignInController extends SignInController {
 				.authenticate(token);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		YaUserDetails details = (YaUserDetails) this.userDetailsService
-				.loadUserByUsername(username);
+		if (authentication.isAuthenticated()) {
 
-		return createYaUserInfo(details.getUser());
+			YaUser user = getUserService().findOne(username);
+			if (user != null) {
+				result = createYaUserInfo(user);
+			}
+		}
+
+		return result;
 	}
 
 	@RequestMapping(value = "/api/signup", method = RequestMethod.POST)

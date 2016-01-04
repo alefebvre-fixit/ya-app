@@ -17,8 +17,6 @@ public interface UserService {
 
 	public YaUser authenticate(SignIn signin);
 
-	public YaUser authenticateByEmail(String email, String password);
-
 	public YaUser authenticateByUserName(String username, String password);
 
 	public String create(YaUser user);
@@ -46,10 +44,9 @@ public interface UserService {
 	public List<String> findFollowingNames(String username);
 
 	public int countFollowing(String username);
-	
+
 	public Credential findCredential(String username);
 
 	public Credential save(Credential credential);
 
-	
 }

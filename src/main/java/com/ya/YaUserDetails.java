@@ -9,19 +9,18 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.ya.model.user.YaUser;
-
 public class YaUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 3928328674928827064L;
 
 	private String password;
+	private String username;
 	private boolean enabled = true;
-	private YaUser user = null;
+
 	private Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 
-	public YaUserDetails(YaUser user, String pw, String... extraRoles) {
-		this.user = user;
+	public YaUserDetails(String username, String pw, String... extraRoles) {
+		this.username = username;
 		this.password = pw;
 
 		// setup roles
@@ -34,10 +33,6 @@ public class YaUserDetails implements UserDetails {
 			authorities.add(new SimpleGrantedAuthority(role(r)));
 		}
 
-	}
-
-	public YaUser getUser() {
-		return user;
 	}
 
 	public String toString() {
@@ -67,7 +62,7 @@ public class YaUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.user.getUsername();
+		return this.username;
 	}
 
 	@Override

@@ -11,8 +11,7 @@ public class YaUser {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email
-				+ ", password=" + password + "]";
+		return "User [id=" + id + ", username=" + username + ", email=" + email + "]";
 	}
 
 	@Id
@@ -30,8 +29,6 @@ public class YaUser {
 
 	private String email;
 
-	public String password;
-
 	private String facebookId;
 
 	public String getUsername() {
@@ -48,14 +45,6 @@ public class YaUser {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	private Profile profile = new Profile();
@@ -76,7 +65,6 @@ public class YaUser {
 		this.email = signup.getEmail();
 		this.username = signup.getUsername();
 		this.profile.setName(signup.getProfile().getName());
-		this.password = signup.getPassword();
 	}
 
 	public YaUser(FacebookSignUp signup) {
@@ -85,9 +73,8 @@ public class YaUser {
 		this.profile = signup.getProfile();
 	}
 
-	public YaUser(String email, String password) {
+	public YaUser(String email) {
 		this.email = email;
-		this.password = password;
 	}
 
 	public Profile getProfile() {

@@ -27,7 +27,7 @@ public class MongoUserService implements UserService {
 
 	@Autowired
 	private FollowingRepository followingRepository;
-	
+
 	@Autowired
 	private CredentialRepository credentialRepository;
 
@@ -46,42 +46,24 @@ public class MongoUserService implements UserService {
 	}
 
 	@Override
-	public YaUser authenticateByEmail(String email, String password) {
-		YaUser user = null;
-		List<YaUser> users = userRepository.findByEmail(email);
-		if (users != null && users.size() > 0) {
-			user = users.get(0);
-			if (authenticate(user, password)) {
-				return user;
-			}
-		}
-
-		return null;
-
-	}
-
-	@Override
 	public YaUser authenticateByUserName(String username, String password) {
-		YaUser user = findOne(username);
 
-		if (authenticate(user, password)) {
-			return user;
+		YaUser result = null;
+
+		Credential credential = findCredential(username);
+		if (credential != null) {
+
+			if (credential.authenticate(password)) {
+				result = findOne(username);
+			} else {
+				Logger.debug("Cannot find authenticate user " + username);
+			}
+
 		} else {
-			return null;
-		}
-	}
-
-	private boolean authenticate(YaUser user, String password) {
-
-		if (user == null) {
-			return false;
+			Logger.debug("Cannot find credential for user " + username);
 		}
 
-		if (password == null) {
-			return false;
-		}
-
-		return password.equals(user.password);
+		return result;
 	}
 
 	@Override

@@ -43,9 +43,11 @@ public class AdminController extends YaController {
 		}
 	}
 
+	
 	private void sanitizeCredential() {
 		Logger.debug("Start sanitize credentials");
 
+		/*
 		List<YaUser> users = getUserService().findAll();
 		for (YaUser user : users) {
 
@@ -63,6 +65,7 @@ public class AdminController extends YaController {
 			}
 
 		}
+		*/
 
 	}
 

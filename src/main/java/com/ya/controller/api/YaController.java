@@ -48,8 +48,7 @@ public class YaController {
 	}
 
 	protected YaUser getUser() {
-		YaUserDetails user = (YaUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return user.getUser();
+		return getUserService().findOne(getUserName());
 	}
 
 	protected SurveyService getSurveyService() {
@@ -57,8 +56,9 @@ public class YaController {
 	}
 
 	protected static String getUserName() {
-		YaUserDetails user = (YaUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		YaUserDetails user = (YaUserDetails) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
 		return user.getUsername();
 	}
-	
+
 }

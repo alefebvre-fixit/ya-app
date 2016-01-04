@@ -25,10 +25,6 @@ public class Credential {
 
 	public String password;
 
-	public String getPassword() {
-		return password;
-	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -39,6 +35,14 @@ public class Credential {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public boolean authenticate(String password) {
+		return this.password.equals(password);
 	}
 
 }
