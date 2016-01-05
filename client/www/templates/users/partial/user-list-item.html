@@ -1,9 +1,7 @@
 
 <a class="item item-avatar" ng-repeat="user in users | filter:filter"
    ui-sref="user({username: user.username})">
-
-	<ya-avatar avatar="user"></ya-avatar>
-
+	<img src="" ya-avatar avatar="user" size="50"/>
 	<h2>{{user.profile.name}}</h2>
 	<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
 </a>

@@ -82,10 +82,10 @@
         </div>
         <div class="row" style="background-color: white" ui-sref="event-sponsors({eventId: event.id})">
             <div class="col-16" style="padding: 5px">
-                <img ng-src="img/users/{{event.username}}.jpg" class="sponsor-avatar owner-avatar">
+                <img src="" ya-avatar avatar="summary.owner" size="50" class="sponsor-avatar owner-avatar"/>
             </div>
-            <div class="col-16" ng-repeat="sponsor in event.sponsors | limitTo: 8" style="padding: 5px">
-                <img ng-src="img/users/{{sponsor}}.jpg" class="sponsor-avatar">
+            <div class="col-16" ng-repeat="sponsor in summary.sponsors | limitTo: 8" style="padding: 5px">
+                <img src="" ya-avatar avatar="sponsor" size="50" class="sponsor-avatar"/>
             </div>
         </div>
 

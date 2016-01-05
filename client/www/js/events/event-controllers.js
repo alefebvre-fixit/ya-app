@@ -131,14 +131,14 @@ angular.module('ya-app').controller('CreateEventController',
     ]);
 
 angular.module('ya-app').controller('ViewEventController',
-    ['$scope', '$state', '$log', '$ionicPopup', '$ionicModal', '$ionicPopover', 'YaService', 'EventService', 'eventId',
-        function ($scope, $state, $log, $ionicPopup, $ionicModal, $ionicPopover,  YaService, EventService, eventId) {
+    ['$scope', '$state', '$log', '$ionicPopup', '$ionicModal', '$ionicPopover', 'YaService', 'EventService', 'eventId', 'UserService',
+        function ($scope, $state, $log, $ionicPopup, $ionicModal, $ionicPopover,  YaService, EventService, eventId, UserService) {
 
             $scope.isSponsor = function(event){
                 return EventService.canEdit(event);
             };
 
-            $scope.summary = {participationsSize : '-', commentSize : '-', comments: [],  myParticipation : {}};
+            $scope.summary = {participationsSize : '-', commentSize : '-', comments: [],  myParticipation : {}, owner: {}, sponsors:[]};
 
             var reload = function(eventId){
                 EventService.getEvent(eventId).then(function(event) {
@@ -164,6 +164,13 @@ angular.module('ya-app').controller('ViewEventController',
                         $scope.summary.commentSize = size;
                     });
 
+                    EventService.getSponsors(eventId).then(function(sponsors) {
+                        $scope.summary.sponsors = sponsors;
+                    });
+
+                    UserService.getUser(event.username).then(function (user) {
+                        $scope.summary.owner = user;
+                    });
 
                 });
             };

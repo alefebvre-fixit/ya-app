@@ -172,8 +172,8 @@ angular.module('ya-app').controller('CreateGroupController',
 
 
 angular.module('ya-app').controller('ViewGroupController',
-    ['YaService', '$scope', '$log', '$state', '$ionicPopup','$ionicPopover', '$ionicActionSheet', '$ionicModal', 'GroupService', 'EventService', 'groupId',
-        function (YaService, $scope, $log, $state, $ionicPopup,$ionicPopover, $ionicActionSheet, $ionicModal, GroupService, EventService, groupId) {
+    ['YaService', '$scope', '$log', '$state', '$ionicPopup','$ionicPopover', '$ionicActionSheet', '$ionicModal', 'GroupService', 'EventService', 'groupId', 'UserService',
+        function (YaService, $scope, $log, $state, $ionicPopup,$ionicPopover, $ionicActionSheet, $ionicModal, GroupService, EventService, groupId, UserService) {
 
 
             $scope.isSponsor = function(group){
@@ -186,7 +186,7 @@ angular.module('ya-app').controller('ViewGroupController',
 
             //To insure the back button is displayed
             $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-                $scope.summary = {followerSize : '-', commentSize : '-', comments: [], lastEvents: []};
+                $scope.summary = {followerSize : '-', commentSize : '-', comments: [], lastEvents: [], owner: {}, sponsors:[]};
 
                 viewData.enableBack = true;
 
@@ -205,6 +205,14 @@ angular.module('ya-app').controller('ViewGroupController',
 
                     GroupService.getFollowerSize(groupId).then(function (data) {
                         $scope.summary.followerSize = data;
+                    });
+
+                    GroupService.getSponsors(groupId).then(function(sponsors) {
+                        $scope.summary.sponsors = sponsors;
+                    });
+
+                    UserService.getUser(group.username).then(function (user) {
+                        $scope.summary.owner = user;
                     });
 
                 });

@@ -7,13 +7,16 @@
 	<ion-content class="has-header">
 		<div class="list">
 			<a class="item item-avatar" ui-sref="user({username: owner.username})">
-				<img ng-src="img/users/{{owner.username}}.jpg" class="owner-avatar">
+				<img src="" ya-avatar avatar="owner" size="50" class="owner-avatar"/>
 				<h2>{{owner.profile.name}}</h2>
 				<p><i class="icon ion-location"> {{owner.profile.city}}, {{owner.profile.country}}</i></p>
 			</a>
+
+			<div ng-include data-src="'templates/users/partial/user-list-item.html'"></div>
+
 			<a class="item item-avatar" ng-repeat="user in sponsors"
 			   ui-sref="user({username: user.username})">
-				<img ng-src="img/users/{{user.username}}.jpg">
+				<img src="" ya-avatar avatar="user" size="50"/>
 				<h2>{{user.profile.name}}</h2>
 				<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
 			</a>
