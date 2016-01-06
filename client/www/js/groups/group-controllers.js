@@ -1,6 +1,8 @@
 angular.module('ya-app').controller('ListGroupsController',
-    ['GroupService', 'EventService', '$scope', '$log','$state',
-        function (GroupService, EventService, $scope, $log, $state) {
+    ['GroupService', 'EventService', '$scope', '$log','$state', 'groups',
+        function (GroupService, EventService, $scope, $log, $state, groups) {
+
+            //$scope.groups = groups;
 
             $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
                 GroupService.getGroups().then(function (groups) {

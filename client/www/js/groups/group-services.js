@@ -4,14 +4,26 @@ angular.module('ya-app').factory('GroupService',
 
             var resultService;
             resultService = {
+
+                getGroupsFromCache: function (groupId) {
+                    return  Group.getAll();
+                },
+
+
                 getGroups: function () {
-                    //return $http.get(YaConfig.url + '/groups').then(function (response) {
-                    //    return response.data;
-                    //});
+
+                    return Group.refreshAll();
+
+                    /*
+                    return $http.get(YaConfig.url + '/groups').then(function (response) {
+                        return response.data;
+                    });
+                    /*
                     return $http.get(YaConfig.url + '/groups').then(function (response) {
                         Group.inject(response.data);
                         return response.data;
                     });
+                    */
                 },
                 getGroupsByOwner: function (username) {
                     return $http.get(YaConfig.url + '/users/' + username + '/groups').then(function (response) {

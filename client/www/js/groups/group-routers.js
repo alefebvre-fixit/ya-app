@@ -6,7 +6,12 @@ angular.module('ya-app').config(function ($stateProvider) {
             views: {
                 'tab-groups': {
                     templateUrl: "templates/groups/group-list.html",
-                    controller: 'ListGroupsController'
+                    controller: 'ListGroupsController',
+                    resolve: {
+                        groups: function (GroupService) {
+                            return GroupService.getGroupsFromCache();
+                        }
+                    }
                 }
             },
             authenticate: true
