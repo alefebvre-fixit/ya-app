@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ya.controller.api.YaController;
+import com.ya.model.event.Participation;
 import com.ya.model.user.YaUser;
 import com.ya.model.user.YaUserFactory;
 import com.ya.util.Logger;
@@ -20,6 +21,7 @@ public class AdminController extends YaController {
 		Logger.debug("Start sanitize");
 		sanitizeCredential();
 		sanitizeProfilePicture();
+		sanitizeEvents();
 	}
 
 	private void sanitizeProfilePicture() {
@@ -73,4 +75,23 @@ public class AdminController extends YaController {
 
 	}
 
+	
+	private void sanitizeEvents() {
+		Logger.debug("Start sanitize participations");
+
+		List<Participation> participations = getEventService().findAllParticipations();
+		if (YaUtil.isNotEmpty(participations)) {
+			for (Participation participation : participations) {
+				YaUser user = getUserService().findOne(participation.getUsername());
+				if (user != null){
+					participation.setUser(user.getIdentifier());
+					getEventService().save(participation);
+				}
+			}
+		}
+		
+	}
+	
+	
+	
 }

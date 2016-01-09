@@ -3,20 +3,26 @@ package com.ya.model.user;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.ya.model.user.impl.EmailSignUp;
-import com.ya.model.user.impl.FacebookSignUp;
+import com.restfb.types.User;
 
 @Document(collection = "User")
 public class YaUser {
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email
-				+ "]";
-	}
-
 	@Id
 	private String id;
+	private String username;
+	private String email;
+	private String facebookId;
+	private String gravatarId;
+
+	private Profile profile = new Profile();
+
+	public YaUser() {
+	}
+
+	public YaUser(String email) {
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;
@@ -25,14 +31,6 @@ public class YaUser {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	private String username;
-
-	private String email;
-
-	private String facebookId;
-
-	private String gravatarId;
 
 	public String getUsername() {
 		return username;
@@ -47,17 +45,6 @@ public class YaUser {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	private Profile profile = new Profile();
-
-	public YaUser() {
-	}
-
-
-
-	public YaUser(String email) {
 		this.email = email;
 	}
 
@@ -84,5 +71,22 @@ public class YaUser {
 	public void setGravatarId(String gravatarId) {
 		this.gravatarId = gravatarId;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email
+				+ "]";
+	}
+	
+	public UserIdentifier getIdentifier(){
+		UserIdentifier result = new UserIdentifier();
+		
+		result.setFacebookId(facebookId);
+		result.setGravatarId(gravatarId);
+		result.setUsername(username);
+		
+		return result;
+	}
+	
 
 }

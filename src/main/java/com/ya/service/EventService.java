@@ -53,6 +53,8 @@ public interface EventService {
 	public List<Participation> findUserParticipations(String username);
 
 	public List<Participation> findParticipations(String eventId);
+	
+	public List<Participation> findAllParticipations();
 
 	public EventComment findOneComment(String commentId);
 

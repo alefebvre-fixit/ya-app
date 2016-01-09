@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.ya.model.user.UserIdentifier;
 import com.ya.model.user.YaUser;
 
 @Document(collection = "Participation")
@@ -14,17 +15,20 @@ public class Participation {
 	public static final String STATUS_IN = "IN";
 	public static final String STATUS_OUT = "OUT";
 
+	@Id
+	public String id;
+	public double version = 0;
 	private String eventId;
 	private String eventName;
-	private String username;
 	private Date creationDate;
 	private Date modificationDate;
 	private String status;
 	private String comment;
+	private UserIdentifier user;
+	
+	@Deprecated
+	private String username;
 
-	@Id
-	public String id;
-	public double version = 0;
 
 	public Participation() {
 	}
@@ -34,7 +38,7 @@ public class Participation {
 		this.eventName = event.getName();
 		this.creationDate = new Date();
 		this.modificationDate = new Date();
-		this.username = user.getUsername();
+		this.user = user.getIdentifier();
 		this.status = STATUS_RSVP;
 	}
 
@@ -62,10 +66,12 @@ public class Participation {
 		this.eventId = eventId;
 	}
 
+	@Deprecated
 	public String getUsername() {
 		return username;
 	}
 
+	@Deprecated
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -117,4 +123,14 @@ public class Participation {
 		this.eventName = eventName;
 	}
 
+	public UserIdentifier getUser() {
+		return user;
+	}
+
+	public void setUser(UserIdentifier user) {
+		this.user = user;
+	}
+
+	
+	
 }

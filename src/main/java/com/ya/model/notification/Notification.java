@@ -2,6 +2,8 @@ package com.ya.model.notification;
 
 import java.util.Date;
 
+import com.ya.model.user.UserIdentifier;
+
 public class Notification implements Cloneable {
 
 	public static final String TYPE_FAVORITE = "Favorite";
@@ -26,6 +28,11 @@ public class Notification implements Cloneable {
 	private String groupId;
 	private String eventName;
 	private String groupName;
+	
+	private UserIdentifier user;
+	private UserIdentifier actorUser;
+	
+	
 	
 	public String getId() {
 		return id;
