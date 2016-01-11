@@ -10,7 +10,8 @@
     "ngCordova": "~0.1.23-alpha",
     "js-data": "~2.8.2",
     "js-data-angular": "~3.1.0",
-    "ng-letter-avatar": "ngletteravatar#~4.0.0"
+    "ng-letter-avatar": "ngletteravatar#~4.0.0",
+    "angular-google-maps": "~2.2.1"
   },
   "resolutions": {
     "angular": "1.4.8"

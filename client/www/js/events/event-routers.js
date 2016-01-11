@@ -24,6 +24,19 @@ angular.module('ya-app').config(function ($stateProvider) {
             ,
             authenticate: true
         })
+        .state('event-location', {
+            cache: true,
+            url: "/event/:eventId",
+            templateUrl: "templates/events/event-location.html",
+            controller: 'EventLocationController',
+            resolve: {
+                eventId: function ($stateParams) {
+                    return $stateParams.eventId;
+                }
+            }
+            ,
+            authenticate: true
+        })
         .state('event-create', {
             cache: false,
             url: "/event/new/:groupId",

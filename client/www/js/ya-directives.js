@@ -120,6 +120,13 @@ angular.module('ya-app')
                     return svgTag;
                 };
 
+                var isNotNull = function(obj){
+                    if(obj){
+                        return true;
+                    }
+                    return false;
+                }
+
                 var getCharacterObject = function (character, textColor, fontFamily, fontWeight, fontsize) {
                     var textTag = angular.element('<text text-anchor="middle"></text>')
                         .attr({

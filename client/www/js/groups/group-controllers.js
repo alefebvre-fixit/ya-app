@@ -209,14 +209,6 @@ angular.module('ya-app').controller('ViewGroupController',
                         $scope.summary.followerSize = data;
                     });
 
-                    GroupService.getSponsors(groupId).then(function(sponsors) {
-                        $scope.summary.sponsors = sponsors;
-                    });
-
-                    UserService.getUser(group.username).then(function (user) {
-                        $scope.summary.owner = user;
-                    });
-
                 });
             });
 

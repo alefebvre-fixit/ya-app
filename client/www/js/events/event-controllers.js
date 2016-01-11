@@ -164,14 +164,6 @@ angular.module('ya-app').controller('ViewEventController',
                         $scope.summary.commentSize = size;
                     });
 
-                    EventService.getSponsors(eventId).then(function(sponsors) {
-                        $scope.summary.sponsors = sponsors;
-                    });
-
-                    UserService.getUser(event.username).then(function (user) {
-                        $scope.summary.owner = user;
-                    });
-
                 });
             };
 
@@ -378,6 +370,23 @@ angular.module('ya-app').controller('EventSponsorsController', ['EventService', 
         $scope.canEdit = function(event){
             return EventService.canEdit(event);
         };
+
+    }
+]);
+
+
+angular.module('ya-app').controller('EventLocationController', ['EventService', '$scope', '$log', 'eventId',
+    function (EventService, $scope, $log, eventId) {
+
+        //To insure the back button is displayed
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+            viewData.enableBack = true;
+
+            EventService.getEvent(eventId).then(function (event) {
+                $scope.event = event;
+            });
+        });
+
 
     }
 ]);

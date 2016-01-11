@@ -66,7 +66,7 @@
                 {{event.description}}
             </div>
         </div>
-        <a class="item item-icon-left item-icon-right">
+        <a class="item item-icon-left item-icon-right" ui-sref="event-location({eventId: event.id})">
             <i class="icon ion-location"></i>
             {{event.location}}
             <i class="icon ion-ios-arrow-forward"></i>
@@ -82,9 +82,9 @@
         </div>
         <div class="row" style="background-color: white" ui-sref="event-sponsors({eventId: event.id})">
             <div class="col-16" style="padding: 5px">
-                <img src="" ya-avatar avatar="summary.owner" size="50" class="sponsor-avatar owner-avatar"/>
+                <img src="" ya-avatar avatar="event.user" size="50" class="sponsor-avatar owner-avatar"/>
             </div>
-            <div class="col-16" ng-repeat="sponsor in summary.sponsors | limitTo: 8" style="padding: 5px">
+            <div class="col-16" ng-repeat="sponsor in event.sponsors | limitTo: 8" style="padding: 5px">
                 <img src="" ya-avatar avatar="sponsor" size="50" class="sponsor-avatar"/>
             </div>
         </div>
