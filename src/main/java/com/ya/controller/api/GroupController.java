@@ -21,10 +21,6 @@ public class GroupController extends YaController {
 	@RequestMapping("/api/groups")
 	public List<Group> groups() {
 		Logger.debug("debug GroupController.groups()");
-		Logger.info("info GroupController.groups()");
-		Logger.warn("warn GroupController.groups()");
-		Logger.error("error GroupController.groups()");
-				
 		return getGroupService().findAll();
 	}
 
@@ -103,11 +99,12 @@ public class GroupController extends YaController {
 		Group original = getGroupService().findOne(groupId);
 
 		if (original == null)
-			throw new EntityNotFoundException(Group.class.getSimpleName(), groupId);
+			throw new EntityNotFoundException(Group.class.getSimpleName(),
+					groupId);
 
 		if (!original.canUpdate(getUserName()))
-			throw new EntityAuthorizationException(Group.class.getSimpleName(), groupId);
-
+			throw new EntityAuthorizationException(Group.class.getSimpleName(),
+					groupId);
 
 		Logger.debug("GroupController.deleteGroup groupId =" + groupId);
 		getGroupService().delete(groupId);
@@ -123,7 +120,7 @@ public class GroupController extends YaController {
 		Logger.debug("GroupController.create()");
 
 		if (group != null) {
-			group.username = getUserName();
+			group.setUser(getUser().getIdentifier());
 			group = getGroupService().save(group);
 		}
 
@@ -137,16 +134,38 @@ public class GroupController extends YaController {
 		Group original = getGroupService().findOne(groupId);
 
 		if (original == null)
-			throw new EntityNotFoundException(Group.class.getSimpleName(), groupId);
+			throw new EntityNotFoundException(Group.class.getSimpleName(),
+					groupId);
 
 		if (!original.canUpdate(getUserName()))
-			throw new EntityAuthorizationException(Group.class.getSimpleName(), groupId);
+			throw new EntityAuthorizationException(Group.class.getSimpleName(),
+					groupId);
 
 		group.setId(groupId);
-		group.username = getUserName();
+		group.setUser(getUser().getIdentifier());
 
 		return getGroupService().save(group);
 
 	}
+	
+	
+	@RequestMapping(value = "/api/groups/{groupId}/sponsors", method = RequestMethod.PUT)
+	public Group update(@PathVariable String groupId, @RequestBody List<String> sponsors) {
+		Logger.debug("GroupController.update()");
+
+		Group original = getGroupService().findOne(groupId);
+
+		if (original == null)
+			throw new EntityNotFoundException(Group.class.getSimpleName(),
+					groupId);
+
+		if (!original.canUpdate(getUserName()))
+			throw new EntityAuthorizationException(Group.class.getSimpleName(),
+					groupId);
+
+		return getGroupService().setSponsors(original, sponsors);
+
+	}
+	
 
 }

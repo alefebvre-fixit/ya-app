@@ -5,6 +5,7 @@ import java.util.List;
 import com.ya.model.user.Credential;
 import com.ya.model.user.SignIn;
 import com.ya.model.user.SignUp;
+import com.ya.model.user.UserIdentifier;
 import com.ya.model.user.YaUser;
 
 public interface UserService {
@@ -14,6 +15,8 @@ public interface UserService {
 	public YaUser findOneByEmail(String email);
 
 	public List<YaUser> find(List<String> usernames);
+	
+	public List<YaUser> findByIdentifiers(List<UserIdentifier> identifiers);
 
 	public YaUser authenticate(SignIn signin);
 

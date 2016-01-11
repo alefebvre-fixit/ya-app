@@ -337,7 +337,7 @@ public class MongoEventService implements EventService {
 		List<YaUser> result = new ArrayList<YaUser>();
 		Event event = findOne(eventId);
 		if (event != null) {
-			result = userService.find(event.getSponsors());
+			result = userService.findByIdentifiers(event.getSponsors());
 		}
 
 		if (result == null) {
@@ -345,6 +345,11 @@ public class MongoEventService implements EventService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public List<Participation> findAllParticipations() {
+		return participationRepository.findAll();
 	}
 
 }

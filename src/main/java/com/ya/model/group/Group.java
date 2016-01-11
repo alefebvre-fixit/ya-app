@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ya.model.user.UserIdentifier;
 import com.ya.util.YaUtil;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -28,9 +29,16 @@ public class Group {
 	public double version = 0;
 	private String status = STATUS_NEW;
 	private int eventSize = 0;
-	private String type;
 
-	private List<String> sponsors = new ArrayList<String>();
+	private String type;
+	private String name;
+	private String description;
+	private String city;
+	private String country;
+	private String location;
+
+	private UserIdentifier user;
+	private List<UserIdentifier> sponsors = new ArrayList<UserIdentifier>();
 
 	public String getId() {
 		return id;
@@ -47,14 +55,6 @@ public class Group {
 	public void incrementVersion() {
 		this.version++;
 	}
-
-	public String name;
-	public String description;
-
-	public String city;
-	public String country;
-	public String location;
-	public String username;
 
 	public String getName() {
 		return name;
@@ -97,11 +97,7 @@ public class Group {
 	}
 
 	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
+		return getUser().getUsername();
 	}
 
 	public void setVersion(double version) {
@@ -142,14 +138,6 @@ public class Group {
 		this.type = type;
 	}
 
-	public List<String> getSponsors() {
-		return sponsors;
-	}
-
-	public void setSponsors(List<String> sponsors) {
-		this.sponsors = sponsors;
-	}
-
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -166,18 +154,52 @@ public class Group {
 		this.modificationDate = modificationDate;
 	}
 
+	public UserIdentifier getUser() {
+		return user;
+	}
+
+	public void setUser(UserIdentifier user) {
+		this.user = user;
+	}
+
+	public List<UserIdentifier> getSponsors() {
+		return sponsors;
+	}
+
+	public void setSponsors(List<UserIdentifier> sponsors) {
+		this.sponsors = sponsors;
+	}
+
 	public boolean canUpdate(String actor) {
 
 		if (actor != null) {
-			if (actor.equals(this.username)) {
+			if (actor.equals(getUsername())) {
 				return true;
 			}
 
-			if (YaUtil.isNotEmpty(sponsors)) {
-				return sponsors.contains(actor);
+			if (isSponsor(actor)) {
+				return true;
 			}
 		}
 
+		return false;
+	}
+
+	public boolean isSponsor(UserIdentifier identifier) {
+		if (identifier != null) {
+			return isSponsor(identifier.getUsername());
+		}
+		return false;
+	}
+
+	public boolean isSponsor(String username) {
+		if (YaUtil.isNotEmpty(sponsors)) {
+			for (UserIdentifier userIdentifier : sponsors) {
+				if (userIdentifier.getUsername().equals(username)) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 

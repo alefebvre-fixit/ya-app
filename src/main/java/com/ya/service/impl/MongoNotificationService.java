@@ -140,4 +140,9 @@ public class MongoNotificationService implements NotificationService {
 		}
 	}
 
+	@Override
+	public List<Notification> findAll() {
+		return notificationRepository.findAll();
+	}
+
 }

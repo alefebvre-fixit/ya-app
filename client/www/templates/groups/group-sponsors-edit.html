@@ -7,12 +7,12 @@
 	<ion-content class="has-header">
 		<ion-list>
 			<ion-item class="item item-avatar item-remove-animate">
-				<img ng-src="img/users/{{owner.username}}.jpg" class="owner-avatar">
+				<img src="" ya-avatar avatar="owner" size="50" class="owner-avatar"/>
 				<h2>{{owner.profile.name}}</h2>
 				<p><i class="icon ion-location"> {{owner.profile.city}}, {{owner.profile.country}}</i></p>
 			</ion-item>
 			<ion-item ng-repeat="user in sponsors track by user.id" class="item item-avatar item-remove-animate">
-				<img ng-src="img/users/{{user.username}}.jpg">
+				<img src="" ya-avatar avatar="user" size="50" class="sponsor-avatar"/>
 				<h2>{{user.profile.name}}</h2>
 				<p><i class="icon ion-location"> {{user.profile.city}}, {{user.profile.country}}</i></p>
 				<ion-option-button class="button-assertive"

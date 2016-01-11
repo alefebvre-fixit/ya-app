@@ -15,7 +15,9 @@
 				<ion-item ng-repeat="notification in notifications track by notification.id"
 						  class="item item-avatar item-remove-animate">
 					<div ng-show="notification.type=='Participation'" ng-click="goToEvent(notification.eventId)">
-						<img class="img-notification" ng-src="img/users/{{notification.actor}}.jpg">
+						<img class="img-notification" src="" ya-avatar avatar="notification.actorUser" size="50"/>
+
+
 						<div ng-switch="notification.status">
 							<h2 ng-switch-when="IN"> <i class="icon ion-record balanced"></i> {{notification.actor}} is in </h2>
 							<h2 ng-switch-when="OUT"> <i class="icon ion-record assertive"></i> {{notification.actor}} is out </h2>

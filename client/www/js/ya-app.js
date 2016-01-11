@@ -44,8 +44,8 @@ angular.module('ya-app', ['ionic', 'ngMessages', 'ngCordova', 'angularMoment', '
 }
 );
 
-angular.module('ya-app').constant('YaConfig', {context : 'production', url : 'http://calm-headland-3125.herokuapp.com/api', enablePlugin : true, enableDebug : false});
-//angular.module('ya-app').constant('YaConfig', {context : 'test', url : 'http://localhost:8080/api', enablePlugin : false, enableDebug : true, access_token: 'CAAVKQaHMWpIBAAaNWd5bybmU7raLvONarxkwZCfdItbj6PukTEW1zpXqdh2kvb8pPQCF97lhviWlJ3far0urd8mZBquV7yZCZCbLuy65GMZAteCRzDlZCkIc3x6Ef2HNclPnze5p1l7g29uBZBbZBXLZAzXZA1ii4PtZB2EGbtUwfqxCecuMY9kkixP6pdvH7F1pqQZD'});
+//angular.module('ya-app').constant('YaConfig', {context : 'production', url : 'http://calm-headland-3125.herokuapp.com/api', enablePlugin : true, enableDebug : false});
+angular.module('ya-app').constant('YaConfig', {context : 'test', url : 'http://localhost:8080/api', enablePlugin : false, enableDebug : true, access_token: 'CAAVKQaHMWpIBAAaNWd5bybmU7raLvONarxkwZCfdItbj6PukTEW1zpXqdh2kvb8pPQCF97lhviWlJ3far0urd8mZBquV7yZCZCbLuy65GMZAteCRzDlZCkIc3x6Ef2HNclPnze5p1l7g29uBZBbZBXLZAzXZA1ii4PtZB2EGbtUwfqxCecuMY9kkixP6pdvH7F1pqQZD'});
 //angular.module('ya-app').constant('YaConfig', {context : 'test', url : 'http://localhost:9000/api', enablePlugin : false, enableDebug : true, access_token: 'CAAVKQaHMWpIBAAaNWd5bybmU7raLvONarxkwZCfdItbj6PukTEW1zpXqdh2kvb8pPQCF97lhviWlJ3far0urd8mZBquV7yZCZCbLuy65GMZAteCRzDlZCkIc3x6Ef2HNclPnze5p1l7g29uBZBbZBXLZAzXZA1ii4PtZB2EGbtUwfqxCecuMY9kkixP6pdvH7F1pqQZD'});
 //angular.module('ya-app').constant('YaConfig', {context : 'production', url : 'http://vast-gorge-2883.herokuapp.com/api', enablePlugin : true, enableDebug : false});
 //angular.module('ya-app').constant('YaConfig', {context : 'simulator', url : 'http://10.0.2.2:9000/api', enablePlugin : true, enableDebug : false});
@@ -66,13 +66,26 @@ angular.module('ya-app')
 
 
 angular.module('ya-app')
-    .factory('Group', function (DS) {
+    .factory('Group', function (DS, User) {
         // This code won't execute unless you actually
         // inject "Comment" somewhere in your code.
         // Thanks Angular...
         // Some like injecting actual Resource
         // definitions, instead of just "DS"
-        return DS.defineResource('groups');
+        //return DS.defineResource('groups');
+
+        return DS.defineResource({
+            name: 'groups',
+            methods: {
+                // resource-specific instance method
+                getOwner: function () {
+                    //return 'owner';
+                    return User.get(this.username);
+
+                    //return User.find(this.username);
+                }
+            }
+        });
     })
     .factory('Event', function (DS) {
         return DS.defineResource('events');

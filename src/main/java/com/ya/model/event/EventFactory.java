@@ -10,7 +10,7 @@ public class EventFactory {
 	public static final Event createEvent(Group group, YaUser user) {
 		Event result = new Event();
 
-		result.setUsername(user.getUsername());
+		result.setUser(user.getIdentifier());
 		result.setCreationDate(new Date());
 		result.setModificationDate(result.getCreationDate());
 		result.setLocation(group.getLocation());
@@ -22,11 +22,11 @@ public class EventFactory {
 
 		result.setSponsors(group.getSponsors());
 
-		if (!result.getSponsors().contains(group.getUsername())) {
-			result.getSponsors().add(group.getUsername());
+		if (!result.isSponsor(group.getUsername())) {
+			result.isSponsor(group.getUsername());
 		}
-		if (result.getSponsors().contains(user.getUsername())) {
-			result.getSponsors().remove(user.getUsername());
+		if (result.isSponsor(user.getUsername())) {
+			result.removeFromSponsors(user.getUsername());
 		}
 
 		return result;

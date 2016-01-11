@@ -4,7 +4,7 @@
         <div class="list">
             <a class="item item-avatar"  collection-repeat="follower in followers"
                ui-sref="user({username: follower.username})">
-                <img ng-src="img/users/{{follower.username}}.jpg">
+                <img src="" ya-avatar avatar="follower" size="50"/>
                 <h2>{{follower.profile.name}}</h2>
                 <p><i class="icon ion-location"> {{follower.profile.city}}, {{follower.profile.country}}</i></p>
             </a>

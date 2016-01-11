@@ -33,4 +33,6 @@ public interface NotificationService {
 
 	public void acknowledgeNotifications(String username);
 
+	public List<Notification> findAll();
+	
 }

@@ -21,15 +21,27 @@ angular.module('ya-app').controller('SignUpController', ['YaService', 'UserServi
     }
 ]);
 
-angular.module('ya-app').controller('SignInController', ['YaService', 'UserService', '$scope', '$rootScope', '$log', '$state', 'NotificationService', '$cordovaOauth', '$http',
-    function (YaService, UserService, $scope, $rootScope, $log, $state, NotificationService, $cordovaOauth, $http) {
+angular.module('ya-app').controller('SignInController', ['YaService', 'UserService', '$scope', '$rootScope', '$log', '$state', 'NotificationService', '$cordovaOauth', '$http', 'GroupService',
+    function (YaService, UserService, $scope, $rootScope, $log, $state, NotificationService, $cordovaOauth, $http, GroupService) {
 
         $scope.signin = {username: 'antoinelefebvre', password: 'password'};
 
 
         var initialize = function(user){
+
+            //Cache initialization
             NotificationService.getNotifications().then(function (notifications) {
-                $rootScope.badgecount = Object.keys(notifications).length-1;
+                var notificationSize = Object.keys(notifications).length-1;
+                if (notificationSize < 0) notificationSize = 0;
+                $rootScope.badgecount = notificationSize;
+            });
+
+            //Cache initialization
+            UserService.getUsers().then(function (users) {
+            });
+
+            //Cache initialization
+            GroupService.getGroups().then(function (groups) {
             });
 
             $state.transitionTo('tabs.events');

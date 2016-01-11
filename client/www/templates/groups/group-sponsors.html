@@ -11,9 +11,6 @@
 				<h2>{{owner.profile.name}}</h2>
 				<p><i class="icon ion-location"> {{owner.profile.city}}, {{owner.profile.country}}</i></p>
 			</a>
-
-			<div ng-include data-src="'templates/users/partial/user-list-item.html'"></div>
-
 			<a class="item item-avatar" ng-repeat="user in sponsors"
 			   ui-sref="user({username: user.username})">
 				<img src="" ya-avatar avatar="user" size="50"/>

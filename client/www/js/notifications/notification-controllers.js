@@ -1,6 +1,19 @@
 angular.module('ya-app').controller('NotificationListController',
-	['YaService', 'NotificationService', '$scope', '$log','$rootScope','$state',
-		function (YaService, NotificationService, $scope, $log, $rootScope, $state) {
+	['YaService', 'NotificationService', '$scope', '$log','$rootScope','$state', 'notifications',
+		function (YaService, NotificationService, $scope, $log, $rootScope, $state, notifications) {
+
+			var setNotification = function(notifications){
+				$scope.notifications = notifications;
+				if (notifications){
+					var notificationSize = Object.keys(notifications).length-1;
+					if (notificationSize < 0) notificationSize = 0;
+					$rootScope.badgecount = notificationSize;
+				} else {
+					$rootScope.badgecount = 0;
+				}
+			};
+
+			setNotification(notifications);
 
 			$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
 				NotificationService.getNotifications().then(function (data) {
@@ -19,20 +32,12 @@ angular.module('ya-app').controller('NotificationListController',
 				//Stop the ion-refresher from spinning
 			};
 
-			setNotification = function(notifications){
-				$scope.notifications = notifications;
-				if (notifications){
-					$rootScope.badgecount = Object.keys($scope.notifications).length-1;;
-				} else {
-					$rootScope.badgecount = 0;
-				}
-			};
-
-
 			$scope.acknowledge = function(notification){
 				NotificationService.acknowledgeNotification(notification).then(function (data) {
 					$scope.notifications.splice($scope.notifications.indexOf(notification), 1);
-					$rootScope.badgecount = Object.keys($scope.notifications).length-1;
+					var notificationSize = Object.keys(notifications).length-1;
+					if (notificationSize < 0) notificationSize = 0;
+					$rootScope.badgecount = notificationSize;
 				});
 			};
 

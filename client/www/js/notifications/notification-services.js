@@ -4,8 +4,11 @@ angular.module('ya-app').factory('NotificationService',
 
             var resultService;
             resultService = {
+                getNotificationsFromCache: function () {
+                    return Notification.getAll();
+                },
                 getNotifications: function () {
-                    return Notification.findAll();
+                    return Notification.refreshAll();
                     //return $http.get(YaConfig.url + '/notifications').then(function (response) {
                     //    return response.data;
                     //});

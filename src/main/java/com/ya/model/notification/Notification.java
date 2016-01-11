@@ -33,7 +33,6 @@ public class Notification implements Cloneable {
 	private UserIdentifier actorUser;
 	
 	
-	
 	public String getId() {
 		return id;
 	}
@@ -138,6 +137,22 @@ public class Notification implements Cloneable {
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
+	}
+
+	public UserIdentifier getUser() {
+		return user;
+	}
+
+	public void setUser(UserIdentifier user) {
+		this.user = user;
+	}
+
+	public UserIdentifier getActorUser() {
+		return actorUser;
+	}
+
+	public void setActorUser(UserIdentifier actorUser) {
+		this.actorUser = actorUser;
 	}
 
 	@Override

@@ -153,8 +153,8 @@ angular.module('ya-app').factory('YaService',
                 },
                 isMine: function(group){
                     if (group){
-                        if (group.username){
-                            return (group.username == $rootScope.user.username);
+                        if (group.user){
+                            return (group.user.username == $rootScope.user.username);
                         }
                         else if (group.contributor){
                             return (group.contributor == $rootScope.user.username);

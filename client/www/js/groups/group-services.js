@@ -4,16 +4,11 @@ angular.module('ya-app').factory('GroupService',
 
             var resultService;
             resultService = {
-
-                getGroupsFromCache: function (groupId) {
+                getGroupsFromCache: function () {
                     return  Group.getAll();
                 },
-
-
                 getGroups: function () {
-
                     return Group.refreshAll();
-
                     /*
                     return $http.get(YaConfig.url + '/groups').then(function (response) {
                         return response.data;
@@ -37,6 +32,21 @@ angular.module('ya-app').factory('GroupService',
                     //return $http.get(YaConfig.url + '/groups/' + groupId).then(function (response) {
                     //    return response.data;
                     //});
+                },
+                saveSponsors: function (group, sponsors) {
+                    var sponsornames = [];
+                    var arrayLength = Object.keys(sponsors).length;
+
+                    for (var i = 0; i < arrayLength; i++) {
+                        sponsornames.push(sponsors[i].username);
+                    }
+
+                    $log.debug(sponsornames);
+
+                    return $http.put(YaConfig.url + '/groups/' + group.id + '/sponsors', sponsornames).then(function (response) {
+                        Group.inject(response.data);
+                        return response.data;
+                    });
                 },
                 saveGroup: function (group) {
                     if (group.id){

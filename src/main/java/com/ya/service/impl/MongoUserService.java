@@ -13,6 +13,7 @@ import com.ya.model.user.Credential;
 import com.ya.model.user.Following;
 import com.ya.model.user.SignIn;
 import com.ya.model.user.SignUp;
+import com.ya.model.user.UserIdentifier;
 import com.ya.model.user.YaUser;
 import com.ya.model.user.YaUserFactory;
 import com.ya.model.user.impl.EmailSignIn;
@@ -307,6 +308,20 @@ public class MongoUserService implements UserService {
 	@Override
 	public Credential save(Credential credential) {
 		return credentialRepository.save(credential);
+	}
+
+	@Override
+	public List<YaUser> findByIdentifiers(List<UserIdentifier> identifiers) {
+
+		List<String> usernames = new ArrayList<String>();
+
+		if (YaUtil.isNotEmpty(identifiers)) {
+			for (UserIdentifier id : identifiers) {
+				usernames.add(id.getUsername());
+			}
+		}
+
+		return find(usernames);
 	}
 
 }

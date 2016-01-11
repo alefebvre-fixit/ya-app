@@ -14,6 +14,7 @@ import com.ya.dao.FavoriteRepository;
 import com.ya.dao.GroupRepository;
 import com.ya.model.Favorite;
 import com.ya.model.group.Group;
+import com.ya.model.user.UserIdentifier;
 import com.ya.model.user.YaUser;
 import com.ya.service.GroupService;
 import com.ya.service.NotificationService;
@@ -223,7 +224,7 @@ public class MongoGroupService implements GroupService {
 		List<YaUser> result = new ArrayList<YaUser>();
 		Group group = findOne(groupId);
 		if (group != null) {
-			result = userService.find(group.getSponsors());
+			result = userService.findByIdentifiers(group.getSponsors());
 		}
 
 		if (result == null) {
@@ -231,6 +232,21 @@ public class MongoGroupService implements GroupService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public Group setSponsors(Group group, List<String> usernames) {
+
+		group.setSponsors(new ArrayList<UserIdentifier>());
+
+		List<YaUser> sponsors = userService.find(usernames);
+		if (YaUtil.isNotEmpty(sponsors)) {
+			for (YaUser yaUser : sponsors) {
+				group.getSponsors().add(yaUser.getIdentifier());
+			}
+		}
+
+		return save(group);
 	}
 
 }

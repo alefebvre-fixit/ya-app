@@ -8,34 +8,34 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ya.model.user.UserIdentifier;
 import com.ya.util.YaUtil;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(collection = "Event")
 public class Event {
 
+	@Id
+	private String id;
+
 	public static final String STATUS_NEW = "New";
 	public static final String STATUS_PUBLISHED = "Published";
 	public static final String STATUS_DRAFT = "Draft";
-
-	@Id
-	public String id;
-	public String groupId;
-	public String groupName;
-	public double version = 0;
+	private String groupId;
+	private String groupName;
+	private double version = 0;
 	private Date date;
 	private String status = STATUS_NEW;
 	private String type;
 	private Date creationDate;
 	private Date modificationDate;
-	public String name;
-	public String description;
-	public String city;
-	public String country;
-	public String location;
-
-	public String username;
-	private List<String> sponsors = new ArrayList<String>();
+	private String name;
+	private String description;
+	private String city;
+	private String country;
+	private String location;
+	private UserIdentifier user;
+	private List<UserIdentifier> sponsors = new ArrayList<UserIdentifier>();
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -118,11 +118,7 @@ public class Event {
 	}
 
 	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
+		return getUser().getUsername();
 	}
 
 	public Date getDate() {
@@ -165,27 +161,64 @@ public class Event {
 		this.type = type;
 	}
 
-	public List<String> getSponsors() {
+	public List<UserIdentifier> getSponsors() {
 		return sponsors;
 	}
 
-	public void setSponsors(List<String> sponsors) {
+	public void setSponsors(List<UserIdentifier> sponsors) {
 		this.sponsors = sponsors;
+	}
+
+	public UserIdentifier getUser() {
+		return user;
+	}
+
+	public void setUser(UserIdentifier user) {
+		this.user = user;
 	}
 
 	public boolean canUpdate(String actor) {
 
 		if (actor != null) {
-			if (actor.equals(this.username)) {
+			if (actor.equals(getUsername())) {
 				return true;
 			}
 
-			if (YaUtil.isNotEmpty(sponsors)) {
-				return sponsors.contains(actor);
+			if (isSponsor(actor)) {
+				return true;
 			}
+
 		}
 
 		return false;
+	}
+
+	public boolean isSponsor(UserIdentifier identifier) {
+		if (identifier != null) {
+			return isSponsor(identifier.getUsername());
+		}
+		return false;
+	}
+
+	public boolean isSponsor(String username) {
+		if (YaUtil.isNotEmpty(sponsors)) {
+			for (UserIdentifier userIdentifier : sponsors) {
+				if (userIdentifier.getUsername().equals(username)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public void removeFromSponsors(String username) {
+		if (YaUtil.isNotEmpty(sponsors)) {
+			for (UserIdentifier userIdentifier : sponsors) {
+				if (userIdentifier.getUsername().equals(username)) {
+					sponsors.remove(userIdentifier);
+				}
+			}
+		}
 	}
 
 }

@@ -2,7 +2,7 @@ angular.module('ya-app').controller('ListGroupsController',
     ['GroupService', 'EventService', '$scope', '$log','$state', 'groups',
         function (GroupService, EventService, $scope, $log, $state, groups) {
 
-            //$scope.groups = groups;
+            $scope.groups = groups;
 
             $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
                 GroupService.getGroups().then(function (groups) {
@@ -369,6 +369,10 @@ angular.module('ya-app').controller('GroupSponsorsController', ['GroupService', 
             viewData.enableBack = true;
 
             GroupService.getSponsors(groupId).then(function(sponsors) {
+                console.log('Just retrieve sponsors');
+
+                console.log(sponsors);
+
                 $scope.sponsors = sponsors;
             });
             GroupService.getGroup(groupId).then(function (group) {
@@ -442,7 +446,6 @@ angular.module('ya-app').controller('GroupSponsorsEditController', ['GroupServic
         $scope.applySelection = function(user){
             if ($scope.group.sponsors.indexOf(user.username) < 0){
                 $scope.sponsors.push(user);
-                $scope.group.sponsors.push(user.username);
             }
             $scope.themeSelector.hide();
         };
@@ -453,7 +456,7 @@ angular.module('ya-app').controller('GroupSponsorsEditController', ['GroupServic
             $log.debug($scope.group);
             // If form is invalid, return and let AngularJS show validation errors.
             YaService.startLoading();
-            GroupService.saveGroup($scope.group).then(function(group) {
+            GroupService.saveSponsors($scope.group, $scope.sponsors).then(function(group) {
                 $ionicHistory.currentView($ionicHistory.backView());
                 YaService.stopLoading();
                 $state.go('group', {groupId: group.id});

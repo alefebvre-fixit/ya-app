@@ -58,12 +58,14 @@ public class EventController extends YaController {
 		Event original = getEventService().findOne(eventId);
 
 		if (original == null)
-			throw new EntityNotFoundException(Event.class.getSimpleName(), eventId);
+			throw new EntityNotFoundException(Event.class.getSimpleName(),
+					eventId);
 
 		if (!original.canUpdate(getUserName()))
-			throw new EntityAuthorizationException(Event.class.getSimpleName(), eventId);
+			throw new EntityAuthorizationException(Event.class.getSimpleName(),
+					eventId);
 
-		event.setUsername(getUserName());
+		event.setUser(getUser().getIdentifier());
 		event.setId(eventId);
 
 		return getEventService().save(event);
@@ -73,7 +75,7 @@ public class EventController extends YaController {
 	public Event create(@RequestBody Event event) {
 		Logger.debug("EventAPIController.save()");
 
-		event.setUsername(getUserName());
+		event.setUser(getUser().getIdentifier());
 		event.setId(null);
 
 		return getEventService().save(event);
@@ -122,10 +124,12 @@ public class EventController extends YaController {
 		Event original = getEventService().findOne(eventId);
 
 		if (original == null)
-			throw new EntityNotFoundException(Event.class.getSimpleName(), eventId);
+			throw new EntityNotFoundException(Event.class.getSimpleName(),
+					eventId);
 
 		if (!original.canUpdate(getUserName()))
-			throw new EntityAuthorizationException(Event.class.getSimpleName(), eventId);
+			throw new EntityAuthorizationException(Event.class.getSimpleName(),
+					eventId);
 
 		getEventService().delete(eventId);
 	}
@@ -138,7 +142,8 @@ public class EventController extends YaController {
 		Event event = getEventService().findOne(eventId);
 
 		if (event == null)
-			throw new EntityNotFoundException(Event.class.getSimpleName(), eventId);
+			throw new EntityNotFoundException(Event.class.getSimpleName(),
+					eventId);
 
 		if (event.accept(participation)) {
 			participation.setEventName(event.getName());
@@ -264,7 +269,5 @@ public class EventController extends YaController {
 
 		return comment;
 	}
-
-
 
 }

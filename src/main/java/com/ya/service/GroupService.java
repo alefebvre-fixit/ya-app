@@ -34,6 +34,8 @@ public interface GroupService {
 	public List<YaUser> findFollowers(String groupId);
 
 	public List<YaUser> findSponsors(String groupId);
+	
+	public Group setSponsors(Group group, List<String> usernames);
 
 	public List<String> findFollowerNames(String groupId);
 
