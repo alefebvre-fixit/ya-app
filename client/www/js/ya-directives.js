@@ -7,24 +7,6 @@ angular.module('ya-app')
             },
             link: function (scope, element, attrs) {
 
-                var createTag = function () {
-                    var size = isNotNull(attrs.size) ? attrs.size : 50;
-
-                    var facebookId = scope.user.facebookId;
-                    var gravatarId = scope.user.gravatarId;
-
-                    var tag = '';
-                    if ((facebookId !== null) && (facebookId !== undefined) && (facebookId !== '')) {
-                        tag = '<img src="http://graph.facebook.com/' + facebookId + '/picture?width=' + size + '&height=' + size + '" >';
-                    } else if ((gravatarId !== null) && (gravatarId !== undefined) && (gravatarId !== '')) {
-                        var src = 'https://secure.gravatar.com/avatar/' + gravatarId + '?s=' + size + '&d=mm';
-                        tag = '<img src=' + src + ' >';
-                    } else {
-                        tag = '<span>Hello Avatar</span>';
-                    }
-                    return tag;
-                };
-
                 scope.$watch('user', function (user) {
                     if (isNotNull(user)) {
                         element.attr('src', computeImageSrc(user));
@@ -152,4 +134,22 @@ angular.module('ya-app')
     });
 
 
+angular.module('ya-app').directive('googleplace', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, model) {
+            var options = {
+                types: [],
+                componentRestrictions: {}
+            };
+            scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+
+            google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+                scope.$apply(function() {
+                    model.$setViewValue(element.val());
+                });
+            });
+        }
+    };
+});
 

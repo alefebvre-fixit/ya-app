@@ -30,10 +30,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(
 				SessionCreationPolicy.STATELESS);
 
-
 		http.authorizeRequests()
-				.antMatchers("/resources/**", "/signup", "/about", "/api/signin/email", "/api/signin/facebook").permitAll().anyRequest()
-				.authenticated();
+				.anyRequest().permitAll().antMatchers("/api/**").authenticated();
 
 		SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(
 				userDetailsServiceBean());
@@ -51,4 +49,5 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+
 }
