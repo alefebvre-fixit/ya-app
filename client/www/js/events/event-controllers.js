@@ -378,14 +378,43 @@ angular.module('ya-app').controller('EventSponsorsController', ['EventService', 
 angular.module('ya-app').controller('EventLocationController', ['EventService', '$scope', '$log', 'eventId',
     function (EventService, $scope, $log, eventId) {
 
+        $scope.map = { center: { latitude: 48.8567, longitude: 2.3508 }, zoom: 16 , options : {mapTypeControl : false, streetViewControl : false}};
+
         //To insure the back button is displayed
         $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
             viewData.enableBack = true;
 
             EventService.getEvent(eventId).then(function (event) {
+
                 $scope.event = event;
+
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode( { "address": event.location }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
+                        var location = results[0].geometry.location;
+                        var center = {latitude: location.lat(), longitude: location.lng() };
+                        //var center = { latitude: 37.7833, longitude: -122.4167 };
+                        //$log.debug(center);
+                        $scope.map.center = center;
+
+                        $scope.marker = {
+                            id: 0,
+                            coords: {
+                                latitude: center.latitude,
+                                longitude: center.longitude
+                            },
+                            options: { draggable: false }
+                        };
+
+
+                    }
+                });
+
+
             });
         });
+
+
 
 
     }

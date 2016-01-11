@@ -1,3 +1,26 @@
+<style>
+
+	#map_canvas {
+		width: 100%;
+		height: 400px;
+		margin: 0;
+		position: relative;
+	}
+
+	.scroll {
+		height: 100%;
+	}
+
+	.angular-google-map-container {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+	}
+
+</style>
+
 <ion-view title="Location" hide-back-button="false">
 
 	<ion-nav-buttons side="right">
@@ -7,11 +30,21 @@
 	</ion-nav-buttons>
 
 	<ion-content class="has-header">
+
+
 		<div class="list">
 			<a class="item item-icon-left">
 				<i class="icon ion-location"></i>
 				{{event.location}}
 			</a>
+			<div class="item" id="map_canvas">
+				<ui-gmap-google-map center="map.center" zoom="map.zoom" dragging="false" options="map.options">
+
+					<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+					</ui-gmap-marker>
+
+				</ui-gmap-google-map>
+			</div>
 		</div>
 
 	</ion-content>

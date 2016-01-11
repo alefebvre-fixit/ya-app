@@ -44,11 +44,15 @@ angular.module('ya-app', ['ionic', 'ngMessages', 'ngCordova', 'angularMoment', '
 }
 );
 
-angular.module('ya-app').constant('YaConfig', {context : 'production', url : 'https://calm-headland-3125.herokuapp.com/api', enablePlugin : true, enableDebug : false});
-//angular.module('ya-app').constant('YaConfig', {context : 'test', url : 'http://localhost:8080/api', enablePlugin : false, enableDebug : true, access_token: 'CAAVKQaHMWpIBAAaNWd5bybmU7raLvONarxkwZCfdItbj6PukTEW1zpXqdh2kvb8pPQCF97lhviWlJ3far0urd8mZBquV7yZCZCbLuy65GMZAteCRzDlZCkIc3x6Ef2HNclPnze5p1l7g29uBZBbZBXLZAzXZA1ii4PtZB2EGbtUwfqxCecuMY9kkixP6pdvH7F1pqQZD'});
+//angular.module('ya-app').constant('YaConfig', {context : 'production', url : 'https://calm-headland-3125.herokuapp.com/api', enablePlugin : true, enableDebug : false});
+angular.module('ya-app').constant('YaConfig', {context : 'test', url : 'http://localhost:8080/api', enablePlugin : false, enableDebug : true, access_token: 'CAAVKQaHMWpIBAAaNWd5bybmU7raLvONarxkwZCfdItbj6PukTEW1zpXqdh2kvb8pPQCF97lhviWlJ3far0urd8mZBquV7yZCZCbLuy65GMZAteCRzDlZCkIc3x6Ef2HNclPnze5p1l7g29uBZBbZBXLZAzXZA1ii4PtZB2EGbtUwfqxCecuMY9kkixP6pdvH7F1pqQZD'});
 //angular.module('ya-app').constant('YaConfig', {context : 'test', url : 'http://localhost:9000/api', enablePlugin : false, enableDebug : true, access_token: 'CAAVKQaHMWpIBAAaNWd5bybmU7raLvONarxkwZCfdItbj6PukTEW1zpXqdh2kvb8pPQCF97lhviWlJ3far0urd8mZBquV7yZCZCbLuy65GMZAteCRzDlZCkIc3x6Ef2HNclPnze5p1l7g29uBZBbZBXLZAzXZA1ii4PtZB2EGbtUwfqxCecuMY9kkixP6pdvH7F1pqQZD'});
 //angular.module('ya-app').constant('YaConfig', {context : 'production', url : 'http://vast-gorge-2883.herokuapp.com/api', enablePlugin : true, enableDebug : false});
 //angular.module('ya-app').constant('YaConfig', {context : 'simulator', url : 'http://10.0.2.2:9000/api', enablePlugin : true, enableDebug : false});
+
+
+
+
 
 angular.module('ya-app').config(function($logProvider, YaConfig) {
     $logProvider.debugEnabled(YaConfig.enableDebug);
@@ -64,6 +68,15 @@ angular.module('ya-app')
         }
 });
 
+angular.module('ya-app').config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: '55883713895-e9egmn26h1ilo7n8msj9ptsfs48dagp3.apps.googleusercontent.com',
+        v: '3.17',
+        libraries: '',
+        language: 'en',
+        sensor: 'false',
+    });
+});
 
 angular.module('ya-app')
     .factory('Group', function (DS, User) {
