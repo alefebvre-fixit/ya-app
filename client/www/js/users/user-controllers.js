@@ -132,7 +132,7 @@ angular.module('ya-app').controller('SignInController', ['YaService', 'UserServi
 
 angular.module('ya-app').controller('EditUserController', ['YaService', 'UserService', '$scope', '$log', 'profile','$state', '$ionicModal',
     function (YaService, UserService, $scope, $log, profile, $state, $ionicModal) {
-
+        console.log('Hello edit user');
         $scope.profile = profile;
 
         $scope.saveProfile = function(profile) {

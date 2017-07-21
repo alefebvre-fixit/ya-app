@@ -70,12 +70,13 @@ angular.module('ya-app').config(function ($stateProvider, $urlRouterProvider) {
 			authenticate: true
 		})
 		.state('user-edit', {
-			cache: true,
+			cache: false,
 			url: "/user/:username/edit",
 			templateUrl: "templates/users/user-edit.html",
 			controller: 'EditUserController',
 			resolve: {
 				profile: function ($rootScope) {
+					console.log($rootScope.user.profile);
 					return JSON.parse(JSON.stringify($rootScope.user.profile));
 				}
 			},
